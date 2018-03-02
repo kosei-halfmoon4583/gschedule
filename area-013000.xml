@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Area>
+<Prefecture cd="130000" name="東京都">
+    <LargeArea cd="136200" name="銀座・日本橋・東京駅周辺">
+        <SmallArea cd="136202" name="銀座・晴海・築地"/>
+        <SmallArea cd="136205" name="東京・神田・日本橋"/>
+    </LargeArea>
+    <LargeArea cd="136500" name="お茶の水・湯島・九段・後楽園">
+        <SmallArea cd="136502" name="お茶の水・湯島・本郷"/>
+        <SmallArea cd="136505" name="九段・四谷・後楽園周辺"/>
+        <SmallArea cd="136508" name="大塚・文京"/>
+    </LargeArea>
+    <LargeArea cd="136800" name="六本木・麻布・赤坂・青山">
+        <SmallArea cd="136802" name="六本木・麻布・虎ノ門"/>
+        <SmallArea cd="136805" name="赤坂・溜池"/>
+        <SmallArea cd="136808" name="青山"/>
+        <SmallArea cd="136812" name="白金"/>
+    </LargeArea>
+    <LargeArea cd="137100" name="お台場・汐留・新橋・品川">
+        <SmallArea cd="137102" name="お台場・汐留・竹芝"/>
+        <SmallArea cd="137105" name="品川・高輪・天王洲"/>
+        <SmallArea cd="137108" name="新橋・芝"/>
+    </LargeArea>
+    <LargeArea cd="137400" name="上野・浅草・両国">
+        <SmallArea cd="137402" name="上野"/>
+        <SmallArea cd="137405" name="浅草"/>
+        <SmallArea cd="137408" name="墨田・両国"/>
+        <SmallArea cd="137412" name="荒川・足立"/>
+    </LargeArea><LargeArea cd="137700" name="池袋・目白・板橋・赤羽">
+        <SmallArea cd="137702" name="池袋"/>
+        <SmallArea cd="137705" name="板橋・赤羽"/>
+    </LargeArea>
+    <LargeArea cd="138000" name="新宿・中野・杉並・吉祥寺">
+        <SmallArea cd="138002" name="新宿"/>
+        <SmallArea cd="138005" name="中野・杉並"/>
+        <SmallArea cd="138008" name="吉祥寺・三鷹・武蔵野"/>
+    </LargeArea>
+    <LargeArea cd="138300" name="渋谷・目黒・世田谷">
+        <SmallArea cd="138302" name="渋谷"/>
+        <SmallArea cd="138305" name="恵比寿・目黒・五反田"/>
+        <SmallArea cd="138308" name="世田谷"/>
+    </LargeArea>
+    <LargeArea cd="138600" name="蒲田・大森・羽田周辺">
+         <SmallArea cd="138602" name="蒲田・大森・羽田周辺"/>
+    </LargeArea>
+    <LargeArea cd="138900" name="葛飾・江戸川・江東">
+         <SmallArea cd="138902" name="葛飾・江戸川"/>
+         <SmallArea cd="138905" name="江東"/>
+    </LargeArea>
+    <LargeArea cd="139200" name="八王子・立川・町田・府中・調布">
+        <SmallArea cd="139202" name="調布・府中"/>
+        <SmallArea cd="139205" name="立川・八王子・多摩"/>
+        <SmallArea cd="139208" name="町田"/>
+        <SmallArea cd="139212" name="福生・東村山・小金井"/>
+    </LargeArea>
+    <LargeArea cd="139500" name="青梅・奥多摩">
+        <SmallArea cd="139502" name="青梅"/>
+        <SmallArea cd="139505" name="奥多摩"/>
+    </LargeArea>
+    <LargeArea cd="139800" name="伊豆七島・小笠原">
+        <SmallArea cd="139802" name="伊豆七島・小笠原"/>
+    </LargeArea>
+</Prefecture>
+</Area>
