@@ -1,0 +1,215 @@
+@charset "utf-8";
+*{padding:0;margin:0;}
+body {
+    font-size: 0.625em ;
+    color: #333333 ;
+    line-height: 1.4 ;
+    text-align: center ;
+    background:#f6f5f5;
+    border-top:20px solid #224782;
+    font-family:"ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
+}
+a { color: #3867aa ;}
+img {border: 0px ;}
+table { font-size: 100% ;}
+ul,li {list-style:none outside none;margin:0;padding:0;}
+hr { 
+    clear: both ;
+    margin: 1px 0;
+    color:#224782;
+    border:1px solid #224782;
+    border-width:1px 0 0 0;
+    height:1px;
+    overflow:hidden;
+}
+html>body hr {margin: 10px 0;}
+.clear {clear:both;}
+
+#container {
+    width: 903px ;
+    margin: auto ;
+    text-align: left ;
+    font-size:1.24em;
+    line-height: 1.4 ;
+}
+#index #container{width:480px;}
+#header {position:relative;border-bottom:1px solid #224782;padding:0 5px;height:99px;overflow:hidden;}
+#center {}
+#footer {
+    clear: both ;
+    color:#4f8ddf;
+    text-align:center;
+    padding:30px 0;
+}
+
+#header *{font-weight:normal;}
+#header h1{
+    display:block;
+    overflow:hidden;
+    background-image:url("../../resources/images/logo.png");
+    background-position:center top;
+    background-repeat:no-repeat;
+    width:250px;
+    height:31px;
+    margin:10px 0;
+    padding:0;
+    line-height:100px;
+    font-size:24px;
+    color:#3867aa;
+}
+#header h2{line-height:39px;color:#224782;font-size:1.12em;margin:0 0 8px 0;padding:0;}
+
+#header p{ 
+    color:#208ff7;
+    display:block;
+    background:url("../../resources/images/today.png") no-repeat;
+    width:247px;
+    height:39px;
+    line-height:39px;
+    text-indent:130px;
+    padding:0;
+    margin:0 15px 0px 0;
+    overflow:hidden;
+    float:left;
+    font-size:1.24em;
+}
+#header dl{position:absolute;bottom:15px;right:5px;}
+#header dl dt,
+#header dl dd{float:left;color:#224782;}
+#header dl dt{background:url("../../resources/images/icon.png") 12px center no-repeat;padding:0 5px 0 24px;}
+#header dl dd{}
+#header dl dd select{}
+
+#nav{margin:25px 0 0 0;background:url("../../resources/images/nav.png") left -32px no-repeat;}
+#nav ul{width:100%;height:32px;background-repeat:no-repeat;overflow:hidden;margin:0;padding:0;}
+#nav ul li{display:inline;margin:0;padding:0;}
+#nav ul li a{ 
+    display:block;
+    overflow:hidden;
+    height:32px;
+    line-height:96px;
+    float:left;
+    margin:0 1px 0 0;padding:0;
+    background:url("../../resources/images/bg.gif");
+}
+#nav ul li.nav1 a{width:97px;}
+#nav ul li.nav2 a{width:100px;}
+#nav ul li.nav3 a{width:105px;}
+#nav ul li.nav4 a{width:105px;}
+#nav ul li.nav5 a{width:90px;}
+#nav ul li.nav6 a{width:139px;}
+#nav ul li.nav7 a{width:134px;}
+#nav ul li.nav8 a{width:124px;}
+#nav ul li a:hover{background-image:url("../../resources/images/nav.png");background-repeat:no-repeat;}
+#nav ul li.nav1 a:hover{background-position:0px top;}
+#nav ul li.nav2 a:hover{background-position:-98px top;}
+#nav ul li.nav3 a:hover{background-position:-199px top;}
+#nav ul li.nav4 a:hover{background-position:-305px top;}
+#nav ul li.nav5 a:hover{background-position:-411px top;}
+#nav ul li.nav6 a:hover{background-position:-502px top;}
+#nav ul li.nav7 a:hover{background-position:-642px top;}
+#nav ul li.nav8 a:hover{background-position:-777px top;}
+
+#center form.calendarbox{width:100%;text-align:center;padding:0 0 3.5em 0;}
+#center form.calendarbox p{padding:35px 0;margin:0;line-height:14px;}
+#center form.calendarbox input { 
+    border:0;
+    width:4em;
+    height:15px;
+    text-align:right;
+    font-size:14px;
+    color:#244782;
+    padding:0;margin:0 1em;
+    vertical-align:bottom;
+}
+#center form.calendarbox input.back{background:#f6f5f5 url(../../resources/images/icon_back.png) left center no-repeat;}
+#center form.calendarbox input.now{background:#f6f5f5 url(../../resources/images/icon_now.png) left center no-repeat;}
+#center form.calendarbox input.next{background:#f6f5f5 url(../../resources/images/icon_next.png) left center no-repeat;}
+#center form.calendarbox .calendar{color:#244782;width:770px;margin:0 auto;}
+#center form.calendarbox .calendar h3 { 
+    padding:0.7em 0 0.5em 0;
+    border:1px solid #eaeaea;
+    border-width:1px 1px 0px 1px;
+    font-weight:normal;
+    background:#fff;
+    font-size:1em;
+}
+#center form.calendarbox .calendar table{width:100%;margin:0;padding:0;border-collapse:collapse;}
+#center form.calendarbox .calendar th,
+#center form.calendarbox .calendar td{color:#052458;border:1px solid #eaeaea;padding:0px;margin:0;}
+#center form.calendarbox .calendar th{background:#d0e1f9;width:14%;white-space:nowrap;font-weight:normal;}
+#center form.calendarbox .calendar th.sat{color:#095fef;}
+#center form.calendarbox .calendar th.sun{color:#ef092a;width:16%;}
+#center form.calendarbox .calendar th p{margin:0;padding:5px;}
+#center form.calendarbox .calendar td{background:#fff;text-align:left;}
+#center form.calendarbox .calendar td.sat{color:#035df6;}
+#center form.calendarbox .calendar td.sun{color:#f00000;}
+#center form.calendarbox .calendar td.today{background:#9cc1f3;}
+#center form.calendarbox .calendar td p{padding:5px 0px 3em 5px;margin:0;position:relative;}
+#center form.calendarbox .calendar td.today p{border:2px solid #fff;line-height:normal;}
+#center form.calendarbox .calendar td p img{border:0;margin:0;position:absolute;bottom:5px;right:2px;}
+#center form.calendarbox .calendar p{text-align:left;padding:15px;margin:0;line-height:normal;}
+#center form.calendarbox .calendar p img{margin:0 5px 0 0;vertical-align:bottom;}
+
+#center form.hotelbox{padding:25px 30px;}
+#center form.hotelbox #treeDiv1 { 
+    width:234px;
+    height:440px;
+    overflow:auto;
+    background-color:#fff;
+    color:#333;
+    border:1px solid gray;
+    font-size:8.5pt;
+    float:left;
+    margin:0 10px 0 0px;
+    position:relative;
+}
+#center form.hotelbox #yui{color:gray;text-align:right;position:absolute;right:5px;bottom:2px;}
+#center form.hotelbox #chkbox1{width:250px;color:gray;padding:5px 0;}
+#center form.hotelbox #chkbox1 input{color:#42c1f8;vertical-align:bottom;}
+#center form.hotelbox #map{width:580px;height:440px;border:1px solid blue;float:right;margin:0;}
+#center form.hotelbox #indi1{width:240px;}
+#center form.hotelbox #hotel{width:400px;height:300px;}
+
+/* index */
+#index #header{border-bottom:0;padding:0;height:auto;}
+#index #header h1{
+    width:100%;
+    height:114px;
+    background-position:center 53px;
+    line-height:360px;
+    margin:0;
+}
+
+#index #center form{
+    margin:0;
+    padding:0;
+    background:url("../../resources/images/login.png") no-repeat;
+    width:480px;
+    height:410px;
+    overflow:hidden;
+    position:relative;
+}
+#index #center form *{color:#fff;}
+#index #center form h2 { 
+    margin:0;
+    padding:0;
+    position:absolute;
+    top:77px;
+    left:120px;
+    width:97px;
+    height:37px; 
+    display:block; 
+    overflow:hidden; 
+    line-height:120px; 
+    background:url("../../resources/images/bg.gif") no-repeat;
+}
+#index #center form p{position:absolute;top:77px;left:250px;line-height:37px;margin:0;padding:0;width:200px;height:37px;overflow:hidden;}
+#index #center form input{border:0;margin:0;padding:0;}
+#index #center form dl{margin:0;padding:162px 28px 0 27px;}
+#index #center form dl dt,
+#index #center form dl dd{height:36px;overflow:hidden;line-height:36px;margin:0 0 14px 0;padding:0;}
+#index #center form dl dt{color:#fff;float:left;width:124px;text-align:right;}
+#index #center form dl dd{font-size:14px;padding:0 0 0 12px;}
+#index #center form dl dd input{background:none;width:208px;height:36px;line-height:36px;margin:0;padding:0;}
+#index #center form input.singnin{width:101px;height:40px;position:absolute;top:285px;left:189px;}

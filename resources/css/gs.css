@@ -1,0 +1,294 @@
+/*=========================================================*
+ * Copyright (C) 2006 Naoshi.WATANUKI All Rights Reserved. *
+ * http://kosei-halfmoon.blogdns.net/gs/                   * 
+ *=========================================================*/
+
+body {
+    margin: 5px 4px 5px 4px;
+    background-color: #FFFFFF;  
+/*    background-image: url("../../resources/images/bg-body.gif"); */
+}
+
+#header {
+    padding: 6px 0px 0px 12px;
+    width: 980px;
+    height:36px;
+    float: left;
+/*  background-image: url("../../resources/images/panel-title-bg.gif"); */
+}
+
+#content {
+    padding: 10px 0px 0px 0px; 
+    width: 980px;
+    float: left;
+    font-size: 11.5px
+}
+
+#menu {
+    padding: 10px 10px 0px 10px; 
+    width: 200px;
+    float: left; 
+}
+
+#menu-ad {
+    margin: 14px;
+    padding: 2px 0px 0px 4px;
+    border: 1px solid #224782;
+    border-top-color: #224782;
+    border-bottom-color: #224782;
+    border-left-color: #224782;
+    border-right-color: #224782;
+    width: 220px;
+    height: 440px;
+    float: left; 
+}
+#menu-weather {
+    margin: 14px;
+    padding: 4px 0px 0px 4px;
+    border: 1px solid #224782;
+    border-top-color: #224782;
+    border-bottom-color: #224782;
+    border-left-color: #224782;
+    border-right-color: #224782;
+    width: 164px;
+    height: 394px;
+    float: left; 
+}
+
+#main { /* 3段組みレイアウト用 */
+    width: 552px;
+    float: left;
+}
+
+#main3 { /* 2段組みレイアウト用 */
+    margin: 16px;
+    width:  680px;
+    float:  left;
+}
+
+#sub {
+    padding: 10px 10px 0px 18px;
+    width: 140px;
+    float: left;
+}
+
+#footer {
+    position:absolute; 
+    right:16px;
+    width:360px;
+    bottom:4px;
+    font-size:11.5px;
+}
+
+#footer-center {
+    position:absolute;
+    left:220px;
+    width:360px;
+    bottom:4px;
+    font-size:11.5px;
+}
+
+#line-top {
+    position:absolute;
+    top:32px;
+    left:14px;
+    width:980px;
+}
+
+#line-under {
+    position:absolute; 
+    left:14px;
+    bottom:54px;
+    width:980px;
+}
+a {
+    text-decoration: none; 
+    fint-size: 12px; 
+    color: #285FFF; 
+}
+
+a:link {
+    text-decoration:none;
+    font-size: 12px;
+    color: #285FFF;
+}
+
+a:visited {
+    text-decoration:none;
+    color: #285FFF;
+}
+
+a:active {
+    color: #285FFF;
+}
+
+a:hover {
+    color: #285FFF;
+    background-color: #9FB8FF;
+}
+
+h1, h2, h3 {
+    margin: 0px;
+    padding: 0px;
+    font-weight: normal;
+}
+
+ul {
+    list-style: none;
+    color: #FFFFFF;
+    margin-left: 0;
+    padding-left: 0;
+}
+li {
+    display: inline;
+    line-height: 1.6;
+    white-space: nowrap;
+}
+li a {
+    text-decoration: none;
+    font-size: 12px;
+    padding: 0.3em 1.2em;
+    color: #FFFFFF;
+    background-image: url("../../resources/images/header.gif");
+    /* background: #3333FF; */
+}
+li a:hover {
+    /* color: #000000;*/
+    color: #FFFFFF;
+    background-image: url("../../resources/images/winbar-bg.gif");
+    /* background: #fc0; */
+}
+
+#container {
+    line-height: 140%;
+    margin-right: auto;
+    margin-left: auto;
+    text-align: center;
+    padding: 0px;
+    width: 780px;
+    background-color: #FFFFFF;
+    border-right: double 4px #285FFF;
+    border-left: double 4px #285FFF;
+    border-bottom: double 4px #285FFF;
+}
+
+#banner {
+    font-family: Verdana, Arial, sans-serif;
+    background-image: url("banner_back.gif");
+    background-position: top left;
+    text-align: left;
+    padding: 25px 10px 10px 40px;
+    height: 80px;
+}
+
+#banner-img {
+    display: none;
+}
+#banner a {
+    color: #2C2C35;
+    text-decoration: none;
+}
+    
+#banner a:link { text-decoration:none; color: #2C2C35;}
+#banner a:visited { text-decoration:none; color: #2C2C35;}
+#banner a:hover { text-decoration:none; color: #2C2C35; background:none;}
+
+#banner h1 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #2C2C35;
+    margin-bottom: 3px;
+}
+
+#banner h2 {
+    font-size:14px;
+    font-weight: bold;
+    color: #FFFFFF;
+}
+
+#center420 {
+    float: left;
+    width: 420px;       
+    overflow: hidden;
+    border-top: solid 1px #285FFF;
+    border-right: solid 1px #285FFF;
+    border-left: solid 1px #285FFF;
+    border-bottom: solid 1px #285FFF;
+    background-color: #E8EDFB;
+}
+
+#center600 {
+    float: left;
+    width: 600px;
+    overflow: hidden;
+}
+
+.content {
+    padding: 10px 10px 0px 10px;
+    color: #646464;
+    font-family: Verdana, Arial, sans-serif;
+    font-size:12px;
+}
+
+#right {
+    float: left;        
+    width: 178px;
+    overflow: hidden;
+    padding: 10px 0px 0px 0px;
+}
+
+.c1 {
+    color: #330099;
+    background: #999999;
+    font-size: 12px;
+    line-height:1.1;
+}
+.c2 {
+    color: #330099;
+    background: #FFFFFF;
+    font-size: 13.5px;
+}
+.c3 {
+    color: #FFFFFF;
+    text-align: center; 
+    nowrap;
+    background: #3399CC;
+    font-size: 14px;
+}
+.c4 {
+    color: #FFFFFF;
+    text-align: left; 
+    background-image: url("../../resources/images/layout-browser-hd-bg.gif");
+    font-size: 13.5px;
+}
+.c5 {
+    padding: 3px 3px 3px 3px;
+    border: 1px solid #999999;
+    font-color: #330099;
+}
+
+.add {
+    background-image:url("../../resources/images/add16.gif") !important;
+}
+.remove {
+    background-image:url("../../resources/images/delete.gif") !important;
+}
+.search {
+    background-image:url("../../resources/images/search.png") !important;
+}
+
+/* styles used for the cells */
+.readonlycell { 
+    background-color:#CCCCCC !important;
+}
+.coolcell { 
+    background-image:url(../../resources/images/cellbck.jpg) !important;
+}
+
+textarea[id="comment-text"] {
+    width: 80%;
+}
+
+textarea {
+    font-family: "ヒラギノ明朝 Pro W6", "Osaka", "ＭＳ Ｐゴシック", "trebuchet MS", "trebuchet", "verdana", "arial", "sans-serif";
+}
