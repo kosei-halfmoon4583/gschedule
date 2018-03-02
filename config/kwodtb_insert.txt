@@ -1,0 +1,10 @@
+mysql> insert into kwordtb(kwd, kurl, kusr, kemail, kdate, kcont)
+	-> values(
+	-> "keyword-0",
+	-> "http://jp.msn.com",
+	-> "kosei",
+	-> "kosei.halfmoon@gmail.com",
+	-> "2011-02-09",
+	-> "test comment 2");
+Query OK, 1 row affected (0.03 sec)
+

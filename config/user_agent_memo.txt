@@ -1,0 +1,16 @@
+$_SERVER['HTTP_USER_AGENT']
+
+$isiPad = (bool) strpos($_SERVER['HTTP_USER_AGENT'],'iPad');
+
+
+
+ユーザーエージェントの例
+キャリア	端末	ユーザーエージェント
+docomo		F501i	DoCoMo/1.0/F501i
+docomo		F900i	DoCoMo/2.0 F900i(c100;TB;W22H12;ser***;icc***)
+au			A3011SA	UP.Browser/3.04-ST13 UP.Link/3.4.5.9
+au			W21SA	KDDI-SA31 UP.Browser/6.2.0.7.3.129 (GUI) MMP/2.0
+SoftBank	J-T03	J-PHONE/2.0/J-T03
+SoftBank	910T	SoftBank/1.0/910T/TJ001/SN*** 
+					Browser/NetFront/3.3 Profile/MIDP-2.0 
+					Configuration/CLDC-1.1

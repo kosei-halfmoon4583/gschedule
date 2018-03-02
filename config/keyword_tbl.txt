@@ -1,0 +1,20 @@
+create table kwordtb (
+		kid 	int unsigned auto_increment primary key,
+		kwd 	varchar(255),
+		kurl	varchar(255),
+		kusr	varchar(40),
+		kemail	varchar(255),
+		kdate	date not null,
+		kcont	varchar(255),
+		index	key1 (kdate)
+);
+
+INSERT INTO kwordtb (kid, kwd, kurl, kusr, kemail, kdate, kcont)
+	   VALUES (1,
+			   '出張',
+			   'http://kosei-halfmoon.blogdns.net/gs/hotel.php',
+			   '綿貫　直志',
+			   'kosei.halfmoon@gmail.com',
+			   '2011-02-08',
+			   'テスト　コメント'
+		);

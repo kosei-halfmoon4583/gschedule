@@ -1,0 +1,22 @@
+INSERT INTO accounttb (userid, passwd, jpname, email, notify, admin)
+       VALUES ("morita",
+               "morita",
+               "øπ≈ƒ∑Ú¬¿œ∫",
+               "kmorita@greentree.co.jp",
+               0,
+               0);
+INSERT INTO accounttb (userid, passwd, jpname, email, notify, admin)
+       VALUES ("watanuki",
+               "naow4583",
+               "Ã ¥”ƒæª÷",
+               "watanuki@arekao.co.jp",
+               0,
+               1);
+INSERT INTO accounttb (userid, passwd, jpname, email, notify, admin)
+       VALUES ("kosei2",
+               "naow2696",
+               "Ã ¥”π∏¿ø",
+               "kosei.halfmoon@gmail.com",
+               0,
+               0);
+

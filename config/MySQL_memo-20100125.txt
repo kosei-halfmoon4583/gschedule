@@ -1,0 +1,12 @@
+A.2.4. Client does not support authentication protocol エラー
+MySQL 4.1 では、パスワードハッシュアルゴリズムに基づく認証プロトコルが使用されていますが、これは旧クライアントが使用しているものと互換性がありません。 サーバを 4.1 にアップグレードすると、旧クライアントで接続しようとした場合に、以下のエラーメッセージが発生する可能性があります。 
+
+shell> mysql
+Client does not support authentication protocol requested
+by server; consider upgrading MySQL client
+この問題を解決するには、以下のいずれかを行ってください。 
+
+mysql> UPDATE user SET Password = OLD_PASSWORD('mypass')
+    -> WHERE Host = 'some_host' AND User = 'some_user';
+mysql> FLUSH PRIVILEGES;
+

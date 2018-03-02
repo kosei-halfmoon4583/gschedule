@@ -1,0 +1,20 @@
+create table schdtitletb (
+		schdid 	int unsigned auto_increment primary key,
+		schd 	varchar(30),
+		surl	varchar(255),
+		susr	varchar(40),
+		semail	varchar(255),
+		sdate	date not null,
+		sremark	varchar(255),
+		index	key1 (sdate)
+);
+
+INSERT INTO schdtitletb (schdid, schd, surl, susr, semail, sdate, sremak)
+	   VALUES (1,
+			   '旅行（国内）',
+			   'http://kosei-halfmoon.blogdns.net/gs/hotel.php',
+			   '綿貫　直志',
+			   'kosei.halfmoon@gmail.com',
+			   '2011-02-08',
+			   'テスト登録'
+		);
