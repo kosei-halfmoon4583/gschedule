@@ -1,7 +1,7 @@
 <?php
 session_start();
   /*======================================================================+
-   | PHP version 4.4.2                                                    |
+   | PHP version 5.6.30                                                   |
    +----------------------------------------------------------------------+
    | Copyright (C) 2002.07.29 N.watanuki                                  |
    +----------------------------------------------------------------------+
@@ -9,10 +9,11 @@ session_start();
    | DATA-WRITTEN   : 2002.07.29                                          |
    | AUTHER         : N.WATANUKI                                          |
    | UPDATE-WRITTEN : 2011.04.08                                          |
+   | UPDATE-WRITTEN : 2018.03.02                                          |
    +======================================================================*/
     require_once("sschk.php"); 
     require_once("sesReg.php");
-    require_once("footer.php"); //footer(outer file.)
+    require_once("footer.php");
     sesReg_sRet();
 
    /* --------------------------- *
@@ -88,7 +89,9 @@ function formCfschd() {
 </div>
 <div id="main3">
 <?php
-    if ($flag == 0) { //セッション変数として入力内容が保存されているケース
+    //flogの機能はなんだろうか?
+    //if ($flag == 0) { //セッション変数として入力内容が保存されているケース
+    if (isset($_SESSION["sschd"])) {
         $tyear = $_SESSION["sschd"][0];
         $tmonth = $_SESSION["sschd"][1];
         $tday = $_SESSION["sschd"][2];
@@ -99,18 +102,11 @@ function formCfschd() {
         $cont1 = $_SESSION["sschd"][7];
         $cont2 = $_SESSION["sschd"][8];
         $crename = $_SESSION["sschd"][9];
-
-        print(" for debug flag0 : $flag <BR> \n");
-        print(" year  : $tyear  <BR> \n");
-        print(" month : $tmonth <BR> \n");
-        print(" day   : $tday   <BR> \n");
     } else {
         if (isset($year)) {
             $tyear = $year;
             $tmonth = sprintf("%02d",$month);
             $tday = sprintf("%02d",$day);
-            
-            print(" for debug flag1 : $flag <BR> \n");
         }
         $cont1 = '';  //変数の初期化（このコードがないと、Undefined variable: cont1 Error が
         $cont2 = '';  //表示されてしまう）
@@ -177,7 +173,6 @@ function formCfschd() {
 /* [終了時間（時）] */
     print("<TR> \n");
     print("<TD class='c4'>&nbsp;終了予定&nbsp;</TD> \n");
-
     print("<TD class='c2'><SELECT name='endhour' size='1' width='10'> \n");
 
     $se_hour = 0;
