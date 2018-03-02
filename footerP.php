@@ -1,0 +1,29 @@
+<?php
+  /*==========================================================================+
+   | PHP version 5.3.8                                                        |
+   +--------------------------------------------------------------------------+
+   | Copyright (C) 2014.05.30 N.watanuki                                      |
+   +--------------------------------------------------------------------------+
+   | Script-ID      : footerP.php                                             |
+   | DATA-WRITTEN   : 2014.05.30                                              |
+   | AUTHER         : N.WATANUKI                                              |
+   | UPDATE-WRITTEN : ____.__.__                                              |
+   +==========================================================================*/
+   $Agent = getenv( "HTTP_USER_AGENT" );
+ 
+   if( ereg( "Safari", $Agent ) ){
+       print("<DIV id='footer-center'>");
+       print("<PRE>");
+       print("Phrase Separator System Version 2.2.4 \n");
+       print("Copyright(C.) 2014 <A HREF='mailto:naoshi01.watanuki@g.softbank.co.jp'><U>Softbank Co.Ltd.,</U></A> Allright Reserved.");
+       print("</PRE> \n");
+       print("</DIV> \n");
+   } else {
+       print("<DIV id='footer-center'>");
+       print("<PRE class='c5'>");
+       print("Phrase Separator System Version 2.2.4 \n");
+       print("Copyright(C.) 2014 <A HREF='mailto:naoshi01.watanuki@g.softbank.co.jp'><U>Softbank Co.Ltd.,</U></A> Allright Reserved.");
+       print("</PRE> \n");
+       print("</DIV> \n");
+   }
+?>
