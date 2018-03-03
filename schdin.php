@@ -9,7 +9,7 @@ session_start();
    | DATA-WRITTEN   : 2002.07.29                                          |
    | AUTHER         : N.WATANUKI                                          |
    | UPDATE-WRITTEN : 2011.04.08                                          |
-   | UPDATE-WRITTEN : 2018.03.02-2                                        |
+   | UPDATE-WRITTEN : 2018.03.02 Upgrade to a newer version.              |
    +======================================================================*/
     require_once("sschk.php"); 
     require_once("sesReg.php");
