@@ -85,22 +85,6 @@ function lastweek() {
         $_SESSION["flag"]; 
     }
     
-/*
-    if (!session_is_registered("sCurMonday")) {
-        session_register("sCurMonday"); 
-        $sCurMonday = get_thisWeek_monday();
-    }
-    // 今週ボタン対応ロジック（今週に戻すためのWork）
-    if (!session_is_registered("thisMonday")) {
-        session_register("thisMonday"); 
-        $thisMonday = get_thisWeek_monday();
-    }
-    // 今週ボタンが押下されたかどうか判断するためのFlag 
-    if (!session_is_registered("flag")) {
-        session_register("flag"); 
-    }
-*/
-
     print("<FORM> \n");
     print("<a href='javascript:void(0)' onClick='lastweek()'>
         <img src='./resources/images/icon_back.png' height='15' width='15'>&nbsp;前　週</a> \n");
