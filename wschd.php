@@ -10,6 +10,7 @@
    | UPDATE-WRITTEN : 2007.12.14                                          |
    +======================================================================*/
     require_once("wcalender.php");  // wcalender 月間カレンダーを作成するクラス
+    require_once("db_connect.php");  // Database connect.
 
 /*----------------------------*
  * wcalender Classを継承する  *
@@ -27,11 +28,11 @@ class wschd extends wcalender {
      *--------------------*/
      function connectDB() {
         //define("DBSV", "localhost");
-        define("DBSV", "127.0.0.1");
-        define("DBNAME", "gschedule");
-        define("DBUSER", "nao");
+        //define("DBSV", "127.0.0.1");
+        //define("DBNAME", "gschedule");
+        //define("DBUSER", "nao");
         //define("DBPASS", "naow2696");
-        define("DBPASS", "naow4583");
+        //define("DBPASS", "naow4583");
 
         $conn = mysql_connect(DBSV, DBUSER, DBPASS) or 
             die("Could not connect to Database!: " . mysql_error($conn));
@@ -51,7 +52,6 @@ class wschd extends wcalender {
         print("<TD align='center' colspan='7' nowrap background='./resources/images/windows-bg.gif'>
                 <FONT color='#FFFFFF' size='-1'>$this->year 年 $this->month 月 $this->day 日&nbsp;から始まる週です
                 </FONT></TD></TR> \n");
-
 /*
         print("<TD align='center' colspan='7' nowrap background='./resources/images/windows-bg.gif'>
             <FONT color='#FFFFFF' size='-1'>第&nbsp;$nweeks&nbsp;週&nbsp;
@@ -82,11 +82,11 @@ class wschd extends wcalender {
 
         //MySQL DB Connect
         //define("DBSV", "localhost");
-        define("DBSV", "127.0.0.1");
-        define("DBNAME", "gschedule");
-        define("DBUSER", "nao");
+        //define("DBSV", "127.0.0.1");
+        //define("DBNAME", "gschedule");
+        //define("DBUSER", "nao");
         //define("DBPASS", "naow2696");
-        define("DBPASS", "naow4583");
+        //define("DBPASS", "naow4583");
 
         $conn = mysql_connect(DBSV, DBUSER, DBPASS) or 
             die("Could not connect to Database!: " . mysql_error($conn));

@@ -67,8 +67,7 @@ class wcalender {
 
         if (($day == $this->today["mday"])&&($month == $this->today["mon"])
            &&($year == $this->today["year"])) { 
-            //return ("<TD" .$this->bgctoday ."><FONT size='-1'>" .$this->fctoday
-            return ("<TD background='./resources/images/win-bg.gif align=left><FONT size='-1'>"  .$this->fctoday
+            return ("<TD background='./resources/images/win-bg.gif align=left><FONT size='12px'>"  .$this->fctoday
             .$month ."月" .$day ."日" . "（" .$this->youbiAry[$i] ."）" ."</FONT></TD> \n");
         }
 /*

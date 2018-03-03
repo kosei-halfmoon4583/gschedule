@@ -11,14 +11,15 @@ session_start();
    | UPDATE-WRITTEN : 2008.01.21                                          |
    +======================================================================*/
 require_once("sschk.php");
-$sCurMonday = day_add($sCurMonday,$days);
-header("Location: wcalen.php");
 
-function day_add($sCurMonday,$dayAdd) {
-    $oldDay = getdate($sCurMonday);
-    $year = $oldDay["year"];
-    $month = $oldDay["mon"];
-    $day = $oldDay["mday"] + $dayAdd;
-    return (mktime(0,0,0,$month,$day,$year));
-}
+    $sCurMonday = day_add($sCurMonday,$days);
+    header("Location: wcalen.php");
+    
+    function day_add($sCurMonday,$dayAdd) {
+        $oldDay = getdate($sCurMonday);
+        $year = $oldDay["year"];
+        $month = $oldDay["mon"];
+        $day = $oldDay["mday"] + $dayAdd;
+        return (mktime(0,0,0,$month,$day,$year));
+    }
 ?>
