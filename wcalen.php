@@ -1,7 +1,7 @@
 <?php
 session_start();
   /*======================================================================+
-   | PHP version 4.4.2                                                    |
+   | PHP version 5.6.30                                                   |
    +----------------------------------------------------------------------+
    | Copyright (C) 2002.08.03 N.watanuki                                  |
    +----------------------------------------------------------------------+
@@ -9,6 +9,7 @@ session_start();
    | DATA-WRITTEN   : 2002.08.03                                          |
    | AUTHER         : N.WATANUKI                                          |
    | UPDATE-WRITTEN : 2007.12.09                                          |
+   | UPDATE-WRITTEN : 2018.03.03 Upgrade to a newer version.              |
    +======================================================================*/
     require_once("sschk.php");  //Session Check.
     require_once("wschd.php"); 
@@ -70,20 +71,35 @@ function lastweek() {
 
 <div id="main3">
 <?php 
+    if (!isset($_SESSION["sCurMonday"])) {
+        $_SESSION["sCurMonday"];
+        $sCurMonday = get_thisWeek_monday();
+    }
+    /* 今週ボタン対応ロジック（今週に戻すためのWork）*/
+    if (!isset($_SESSION["thisMonday"])) {
+        $_SESSION["thisMonday"]; 
+        $thisMonday = get_thisWeek_monday();
+    }
+    /* 今週ボタンが押下されたかどうか判断するためのFlag */
+    if (!isset($_SESSION["flag"])) {
+        $_SESSION["flag"]; 
+    }
+    
+/*
     if (!session_is_registered("sCurMonday")) {
         session_register("sCurMonday"); 
         $sCurMonday = get_thisWeek_monday();
     }
-
-    /* 今週ボタン対応ロジック（今週に戻すためのWork）*/
+    // 今週ボタン対応ロジック（今週に戻すためのWork）
     if (!session_is_registered("thisMonday")) {
         session_register("thisMonday"); 
         $thisMonday = get_thisWeek_monday();
     }
-    /* 今週ボタンが押下されたかどうか判断するためのFlag */
+    // 今週ボタンが押下されたかどうか判断するためのFlag 
     if (!session_is_registered("flag")) {
         session_register("flag"); 
     }
+*/
 
     print("<FORM> \n");
     print("<a href='javascript:void(0)' onClick='lastweek()'>
