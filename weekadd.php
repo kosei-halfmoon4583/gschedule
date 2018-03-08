@@ -1,7 +1,7 @@
 <?php
 session_start();
   /*======================================================================+
-   | PHP version 4.4.2                                                    |
+   | PHP version 5.6.30                                                   |
    +----------------------------------------------------------------------+
    | Copyright (C) 2002.08.05 N.watanuki                                  |
    +----------------------------------------------------------------------+
@@ -9,10 +9,15 @@ session_start();
    | DATA-WRITTEN   : 2002.08.05                                          |
    | AUTHER         : N.WATANUKI                                          |
    | UPDATE-WRITTEN : 2008.01.21                                          |
+   | UPDATE-WRITTEN : 2018.03.08 Upgrade to a newer version.              |
    +======================================================================*/
-require_once("sschk.php");
+    require_once("sschk.php");
 
-    $sCurMonday = day_add($sCurMonday,$days);
+    if (isset($_GET["days"])) {
+        $days = $_GET["days"];
+    }
+
+    $_SESSION["sCurMonday"] = day_add($_SESSION["sCurMonday"],$days);
     header("Location: wcalen.php");
     
     function day_add($sCurMonday,$dayAdd) {
