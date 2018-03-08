@@ -10,7 +10,7 @@ session_start();
    | AUTHER         : N.WATANUKI                                              |
    | UPDATE-WRITTEN : 2012.03.31  MacOSX(version 10.7)へ移植                  |
    | UPDATE-WRITTEN : 2014.06.02  表示変更                                    |
-   | UPDATE-WRITTEN : 2018.02.05  Alter session variable                      |
+   | UPDATE-WRITTEN : 2018.03.08  Alter session variable.                     |
    +==========================================================================*/
     require_once("sschk.php");
     require_once("mschd.php");
@@ -122,6 +122,17 @@ function memListSelect(p_strYear, p_strMonth) {
     }
     $sCurYM[0] = $year;
     $sCurYM[1] = $month;
+
+// 週間カレンダー日付セット変数 unset
+    if (isset($_SESSION["sCurMonday"])) {
+        unset($_SESSION["sCurMonday"]);
+    }
+    if (isset($_SESSION["thisMonday"])) {
+        unset($_SESSION["thisMonday"]);
+    }
+    if (isset($_SESSION["flag"])) {
+        unset($_SESSION["flag"]);
+    }
 ?>
 <!-- Side Navigation Table -->
 <div id="menu">
