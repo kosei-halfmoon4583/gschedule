@@ -11,20 +11,20 @@ session_start();
    | UPDATE-WRITTEN : 2007.12.09                                          |
    | UPDATE-WRITTEN : 2018.03.03 Upgrade to a newer version.              |
    +======================================================================*/
-    require_once("sschk.php");  //Session Check.
+    require_once("sschk.php");
     require_once("wschd.php"); 
     require_once("sesUreg.php"); 
-    require_once("footer.php"); //footer(outer file.)
+    require_once("footer.php");
     $header_title = "[ 週間予定 ]";
 ?>
 <script type="text/javascript">
-function nextweek() {
+function nextweek() { 
     days = 7;
     url = "weekadd.php";
     url = url + "?days=" + days;
     location.href = url;
 }
-function thisweek() {
+function thisweek() { 
     days = 0;
     url = "thisweek.php";
     url = url + "?days=" + days;
@@ -49,40 +49,36 @@ function lastweek() {
 <?php require_once("header.php"); ?>
 
 <div id="content">
-<!-- <div id="header"> -->
 <div id="menu-weather">
 
 <pre style="color:#3399CC;">
   [ お天気は如何でしょ？]
   
 </pre>
-<!--
-<script type="text/javascript" charset="utf-8" src="http://www.marvin-web.com/blog/weather1/weather.js">
-</script>
--->
 
 <script type="text/javascript" src="http://n-de.jp/bp/wn/suzunari.js#wn_pos=4410">
 </script>
 <noscript>
 <a href="http://n-de.jp/" title="中デザイン株式会社">中デザイン株式会社</a>
 </noscript>
-
 </div>
 
 <div id="main3">
 <?php 
     if (!isset($_SESSION["sCurMonday"])) {
-        $_SESSION["sCurMonday"];
-        $sCurMonday = get_thisWeek_monday();
+        $_SESSION["sCurMonday"] = get_thisWeek_monday();
     }
+
     /* 今週ボタン対応ロジック（今週に戻すためのWork）*/
     if (!isset($_SESSION["thisMonday"])) {
-        $_SESSION["thisMonday"]; 
-        $thisMonday = get_thisWeek_monday();
+        $_SESSION["thisMonday"] = get_thisWeek_monday();
     }
+ 
     /* 今週ボタンが押下されたかどうか判断するためのFlag */
     if (!isset($_SESSION["flag"])) {
         $_SESSION["flag"]; 
+    } else {
+        $flag = $_SESSION["flag"];
     }
     
     print("<FORM> \n");
@@ -92,18 +88,18 @@ function lastweek() {
         <img src='./resources/images/icon_now.png' height='15' width='15'>&nbsp;今　週</a> \n");
     print("<a href='javascript:void(0)' onClick='nextweek()'>
         <img src='./resources/images/icon_next.png' height='15' width='15'>&nbsp;次　週</a> \n");
-
     print("<BR><BR> \n");
 
     if ($flag == 1) {
-        $startDay = getdate($thisMonday);
-        $sCurMonday = $thisMonday;
+        $startDay = getdate($_SESSION["thisMonday"]);
         $wschd = new wschd($startDay["year"],$startDay["mon"],$startDay["mday"]);
         $wschd->disp_calen();
-        print("</FORM> \n");
         $flag = 0;
+        unset($_SESSION["flag"]);
+        $_SESSION["sCurMonday"] = get_thisWeek_monday();
+        print("</FORM> \n");
     } else {
-        $startDay = getdate($sCurMonday);
+        $startDay = getdate($_SESSION["sCurMonday"]);
         $wschd = new wschd($startDay["year"],$startDay["mon"],$startDay["mday"]);
         $wschd->disp_calen();
         print("</FORM> \n");
