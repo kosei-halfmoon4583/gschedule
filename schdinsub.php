@@ -1,7 +1,7 @@
 <?php
 session_start();
   /*======================================================================+
-   | PHP version 4.4.2                                                    |
+   | PHP version 5.6.30                                                   |
    +----------------------------------------------------------------------+
    | Copyright (C) 2002.07.29 N.watanuki                                  |
    +----------------------------------------------------------------------+
@@ -9,6 +9,7 @@ session_start();
    | DATA-WRITTEN   : 2002.07.29                                          |
    | AUTHER         : N.WATANUKI                                          |
    | UPDATE-WRITTEN : 2011.05.11                                          |
+   | UPDATE-WRITTEN : 2018.03.13 Upgrade to a newer version.              |
    +======================================================================*/
     require_once("sschk.php");
     require_once("db_connect.php");
@@ -170,14 +171,10 @@ session_start();
         if (!isset($_SESSION["ssid"])) {
             $sql = "insert into schdtb(sdate,sstime,setime,cont1,cont2,suserid)"; 
             $sql .= " values('$sdate','$sstime','$setime','$cont1','$cont2','$sesLoginID')";
-            //unset($_SESSION["sschd"]);
-            //unset($_SESSION["oldschd"]);
         } else {
             $sql = "update schdtb set sdate='$sdate', sstime='$sstime', setime='$setime',"; 
             $sql .= " cont1='$cont1', cont2='$cont2'"; 
             $sql .= " where sid=" . $ssid;
-            //unset($_SESSION["sschd"]);
-            //unset($_SESSION["oldschd"]);
         }
     }
 
