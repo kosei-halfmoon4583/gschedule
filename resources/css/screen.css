@@ -31,7 +31,7 @@ form { padding: 0; margin: 0; }
 }
 #content { 
     float: left;
-    width: 620px;  
+    width: 640px;  
     min-width: 500px; 
     min-height:400px; 
     padding:10px 0px; 
@@ -52,13 +52,13 @@ form { padding: 0; margin: 0; }
 #line-top { 
     position:absolute;    
     top:36px;    
-    width:984px;
+    width:994px;
 }
 #treeDiv1 {
     position: absolute; 
     left:106px;
     top: 80px; 
-    width: 244px; 
+    width: 258px; 
     height: 478px; 
     overflow: auto; 
     background-color: #ffffff; 
@@ -85,9 +85,9 @@ form { padding: 0; margin: 0; }
 }
 #map { 
     position:absolute; 
-    left: 354px; 
+    left: 368px; 
     top: 80px; 
-    width: 600px; 
+    width: 620px; 
     height: 478px; 
     border: 1px 
     solid blue;
@@ -100,8 +100,8 @@ form { padding: 0; margin: 0; }
 }
 #hotel { 
     position:absolute; 
-    left:-1000px;
-    top:-1000px; 
+    left:625px;
+    top:560; 
     width: 400px; 
     height:300px;
 }
