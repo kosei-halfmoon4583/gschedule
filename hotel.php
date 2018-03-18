@@ -5,7 +5,7 @@
    | Copyright (C) 2007.12.30 N.watanuki                                      |
    +--------------------------------------------------------------------------+
    | Hotel Search Script                                                      |
-   | Script-ID      : hotel.php                                               |
+   | Script-ID      : hotels.php                                              |
    | DATA-WRITTEN   : 2007.12.30                                              |
    | AUTHER         : N.WATANUKI                                              |
    | UPDATE-WRITTEN : 2011.04.16                                              |
@@ -14,6 +14,7 @@
     $dyear = $crrentdate["year"];
     $dmonth = $crrentdate["mon"];
     $wdate = date("Y-m-d");
+    $header_title = "[ ホテル検索 ]";
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
@@ -36,11 +37,33 @@
 <script type="text/javascript" src="./js/downloadxml.js"></script>
 
 <script type="text/javascript" 
-    src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDqg5pBlgwlMHCbuEEtE0UnXiJJ3qX4VuQ&sensor=false">
+    src="http://maps.googleapis.com/maps/api/js?key=AIzaSyD-3UY1BRI6EikMEXmNAwRDXCuE627CQBw">
 </script>
+
+<!--
+<script>
+    function initMap() {
+        // Create a map object and specify the DOM element for display.
+        var map = new google.maps.Map(document.getElementById('map'), {
+            center: {lat: -34.397, lng: 150.644},
+            zoom: 8
+        });
+    }
+
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAS10yCA2I_0JdbMrW43fM3pxRCf8nxq0A&callback=initMap"
+    async defer>
+</script>
+-->
    
 </head>
+<!--
 <body background="./resources/images/bg-body.gif">
+-->
+<body>
+<div id="menu">
+</div>
+<div id="main">
 
 <div id = "treeDiv1">
     <img src="./resources/images/loading.gif" alt="loading" />
@@ -76,7 +99,8 @@ Copyright(C.) 2009  <font color="#FF5500"><a href="mailto:kosei.halfmoon@gmail.c
 
   var treeDivId = "treeDiv1";
   //var mapDivId  = "map";
-  var areaURL   = "http://kosei-halfmoon.dyndns-ip.com/gs/area-013000.xml";
+  //var areaURL   = "http://kosei-halfmoon.dyndns-ip.com/gs/area-013000.xml";
+  var areaURL   = "http://localhost/gschedule/area-013000.xml";
   var iniLatLng = [38.16911413556086, 138.33984375];
   var centerY,centerX,zm,nowarea;
 
@@ -221,7 +245,8 @@ Copyright(C.) 2009  <font color="#FF5500"><a href="mailto:kosei.halfmoon@gmail.c
        return eval(""+json)
   }
 
-  var jalanHotelSearchURL = "http://kosei-halfmoon.dyndns-ip.com/gs/getHotel.php";
+  //var jalanHotelSearchURL = "http://kosei-halfmoon.dyndns-ip.com/gs/getHotel.php";
+  var jalanHotelSearchURL = "./getHotel.php";
   var jalan_getHotels = function(s_area){
       indi.indi_append("indi1");
       indi.indi_start();
@@ -528,5 +553,6 @@ Copyright(C.) 2009  <font color="#FF5500"><a href="mailto:kosei.halfmoon@gmail.c
 
 //]]>
 </script>
+</div>
 </body>
 </html>
