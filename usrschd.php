@@ -1,6 +1,6 @@
 <?php
 /* +========================================================================+
-   | PHP version 4.4.2                                                      |
+   | PHP version 5.6.30                                                     |
    +------------------------------------------------------------------------+
    | Copyright (C) 2002.08.30 L. Tortona                                    |
    +------------------------------------------------------------------------+
@@ -8,6 +8,7 @@
    | DATA-WRITTEN   : 2002.09.02                                            |
    | AUTHOR         : __________                                            |
    | UPDATE-WRITTEN : 2007.12.09 UPDATE AUTHER: Naoshi WATANUKI.            |
+   | UPDATE-WRITTEN : 2018.02.18 Upgrade to a newer version.                |
    +========================================================================*/
     require_once("usrschddb.php");
     require_once("footer.php"); //footer(outer file.)
