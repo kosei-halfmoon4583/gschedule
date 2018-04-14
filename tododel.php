@@ -1,14 +1,14 @@
 <?php
 session_start();
   /*======================================================================+
-   | PHP version 4.4.2                                                    |
+   | PHP version 5.6.30                                                   |
    +----------------------------------------------------------------------+
    | Copyright (C) 2002.07.30 N.watanuki                                  |
    +----------------------------------------------------------------------+
    | Script-ID      : tododel.php                                         |
    | DATA-WRITTEN   : 2002.07.30                                          |
    | AUTHER         : N.WATANUKI                                          |
-   | UPDATE-WRITTEN : 2018.02.28                                          |
+   | UPDATE-WRITTEN : 2018.02.28 Upgrade to a newer version.              |
    +======================================================================*/
     require_once("sschk.php");  //session check
     require_once("footer.php"); //footer(outer file.)
