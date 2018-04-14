@@ -9,7 +9,7 @@ session_start();
    | DATA-WRITTEN   : 2002.07.29                                          |
    | AUTHER         : N.WATANUKI                                          |
    | UPDATE-WRITTEN : 2011.05.11                                          |
-   | UPDATE-WRITTEN : 2018.03.13 Upgrade to a newer version.              |
+   | UPDATE-WRITTEN : 2018.03.15 Upgrade to a newer version.              |
    +======================================================================*/
     require_once("sschk.php");
     require_once("db_connect.php");
