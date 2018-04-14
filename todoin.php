@@ -1,7 +1,7 @@
 <?php
 session_start();
 /* +======================================================================+
-   | PHP version 4.4.2                                                    |
+   | PHP version 5.6.30                                                   |
    +----------------------------------------------------------------------+
    | Copyright (C) 2002.07.31 N.watanuki                                  |
    +----------------------------------------------------------------------+
@@ -9,6 +9,7 @@ session_start();
    | DATA-WRITTEN   : 2002.07.31                                          |
    | AUTHER         : N.WATANUKI                                          |
    | UPDATE-WRITTEN : 2007.12.09                                          |
+   | UPDATE-WRITTEN : 2018.03.18 Upgrade to a newer version.              |
    +======================================================================*/
     require_once("sschk.php");  
     require_once("footer.php"); //footer(outer file.)
