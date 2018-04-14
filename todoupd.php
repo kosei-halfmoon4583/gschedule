@@ -1,7 +1,7 @@
 <?php
 session_start();
   /*======================================================================+
-   | PHP version 4.4.2                                                    |
+   | PHP version 5.6.30                                                   |
    +----------------------------------------------------------------------+
    | Copyright (C) 2002.08.02 N.watanuki                                  |
    +----------------------------------------------------------------------+
@@ -9,6 +9,7 @@ session_start();
    | DATA-WRITTEN   : 2002.08.02                                          |
    | AUTHER         : N.WATANUKI                                          |
    | UPDATE-WRITTEN : 2018.02.28                                          |
+   | UPDATE-WRITTEN : 2018.03.18 Upgrade to a newer version.              |
    +======================================================================*/
     require_once("sschk.php");    
     require_once("db_connect.php");
