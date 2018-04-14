@@ -168,7 +168,8 @@ function memListSelect(p_strYear, p_strMonth) {
         print ("<li><a href='mcalen.php' target='_top'><font color='#FFFFFF'>月間予定</font></a></li> \n");
         print ("<li><a href='wcalen.php' target='_top'><font color='#FFFFFF'>週間予定</font></a></li> \n");
         print ("<li><a href='todo.php' target='_top'><font color='#FFFFFF'>Todo登録</font></a></li> \n");
-        print ("<li><a href='http://kosei-halfmoon.dyndns-ip.com/gs/hotel.php' target='_blank'><font color='#FFFFFF'>
+        //print ("<li><a href='http://kosei-halfmoon.dyndns-ip.com/gs/hotel.php' target='_blank'><font color='#FFFFFF'>
+        print ("<li><a href='hotel.php' target='_blank'><font color='#FFFFFF'>
         ホテル検索</font></a></li> \n");
         print ("<li><a href='https://mail.google.com/mail/?account_id=kosei.halfmoon%40gmail.com#' target='_blank'><font color='#FFFFFF'>
         &nbsp;メール&nbsp;</font></a></li> \n");
@@ -188,7 +189,8 @@ function memListSelect(p_strYear, p_strMonth) {
         print ("<li><a href='mcalen.php' target='_top'><font color='#FFFFFF'>月間予定</font></a></li> \n");
         print ("<li><a href='wcalen.php' target='_top'><font color='#FFFFFF'>週間予定</font></a></li> \n");
         print ("<li><a href='todo.php' target='_top'><font color='#FFFFFF'>Todo登録</font></a></li> \n");
-        print ("<li><a href='http://kosei-halfmoon.dyndns-ip.com/gs/hotel.php' target='_blank'><font color='#FFFFFF'>
+        //print ("<li><a href='http://kosei-halfmoon.dyndns-ip.com/gs/hotel.php' target='_blank'><font color='#FFFFFF'>
+        print ("<li><a href='hotel.php' target='_blank'><font color='#FFFFFF'>
         ホテル検索</font></a></li> \n");
         print ("<li><a href='lout.php' target='_top'><font color='#FFFFFF'>ログアウト</font></a></li> \n");
         print ("</ul> \n");
