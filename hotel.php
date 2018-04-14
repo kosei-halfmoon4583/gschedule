@@ -1,6 +1,6 @@
 <?php
   /*==========================================================================+
-   | PHP version 4.4.2                                                        |
+   | PHP version 5.6.30                                                       |
    +--------------------------------------------------------------------------+
    | Copyright (C) 2007.12.30 N.watanuki                                      |
    +--------------------------------------------------------------------------+
@@ -9,6 +9,7 @@
    | DATA-WRITTEN   : 2007.12.30                                              |
    | AUTHER         : N.WATANUKI                                              |
    | UPDATE-WRITTEN : 2011.04.16                                              |
+   | UPDATE-WRITTEN : 2018.03.18 Upgrade to a newer version.                  |
    +==========================================================================*/
     $crrentdate = getdate();
     $dyear = $crrentdate["year"];
@@ -23,7 +24,7 @@
 <meta http-equiv="Content-Style-Type" content="text/css" />
 <meta http-equiv="Content-Script-Type" content="text/javascript" />
 
-<title>KOSEIs Hotel Search</title>
+<title>KOSEIs Hotel Search!</title>
 
 <link rel="stylesheet" type="text/css" href="./resources/css/screen.css" />
 <link rel="stylesheet" type="text/css" href="./resources/css/tree.css" />
@@ -40,27 +41,10 @@
     src="http://maps.googleapis.com/maps/api/js?key=AIzaSyD-3UY1BRI6EikMEXmNAwRDXCuE627CQBw">
 </script>
 
-<!--
-<script>
-    function initMap() {
-        // Create a map object and specify the DOM element for display.
-        var map = new google.maps.Map(document.getElementById('map'), {
-            center: {lat: -34.397, lng: 150.644},
-            zoom: 8
-        });
-    }
-
-</script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAS10yCA2I_0JdbMrW43fM3pxRCf8nxq0A&callback=initMap"
-    async defer>
-</script>
--->
-   
 </head>
-<!--
-<body background="./resources/images/bg-body.gif">
--->
 <body>
+<?php require_once("header.php"); ?>
+<div id="content">
 <div id="menu">
 </div>
 <div id="main">
@@ -70,7 +54,7 @@
 </div> 
 
 <div id = "yui">
-    Powered by YUI Library
+    Powered by YUI Library version 2.3
 </div>
 
 <div id = "chkbox1">
@@ -99,7 +83,6 @@ Copyright(C.) 2009  <font color="#FF5500"><a href="mailto:kosei.halfmoon@gmail.c
 
   var treeDivId = "treeDiv1";
   //var mapDivId  = "map";
-  //var areaURL   = "http://kosei-halfmoon.dyndns-ip.com/gs/area-013000.xml";
   var areaURL   = "http://localhost/gschedule/area-013000.xml";
   var iniLatLng = [38.16911413556086, 138.33984375];
   var centerY,centerX,zm,nowarea;
@@ -304,6 +287,7 @@ Copyright(C.) 2009  <font color="#FF5500"><a href="mailto:kosei.halfmoon@gmail.c
       return ms/3600000;
   }
 
+ /* Directory(Tree)初期化: area-013000.xmlをセット */
   YAHOO.tato.treeIni = function(){
       YAHOO.widget.TreeView.preload();
       test1 = new YAHOO.tato.tree(treeDivId); 
@@ -403,14 +387,14 @@ Copyright(C.) 2009  <font color="#FF5500"><a href="mailto:kosei.halfmoon@gmail.c
                                
         var point  = new GPoint_tky(h_Oj[h_id].h_x,h_Oj[h_id].h_y);
         var myLatlng = new google.maps.LatLng(point.y,point.x);
-          var iwopts = {
-              content: msg,
-              position: myLatlng
-          };
+        var iwopts = {
+            content: msg,
+            position: myLatlng
+        };
 
-          var infoWindow = new google.maps.InfoWindow(iwopts);
+        var infoWindow = new google.maps.InfoWindow(iwopts);
 
-          infoWindow.open(map);
+        infoWindow.open(map);
       },
       
       preLoad : function(h_id){
@@ -553,6 +537,7 @@ Copyright(C.) 2009  <font color="#FF5500"><a href="mailto:kosei.halfmoon@gmail.c
 
 //]]>
 </script>
+</div>
 </div>
 </body>
 </html>
