@@ -1,7 +1,7 @@
 <?php
 session_start();
 /* +======================================================================+
-   | PHP version 4.4.2                                                    |
+   | PHP version 5.6.30                                                   |
    +----------------------------------------------------------------------+
    | Copyright (C) 2002.07.16 N.watanuki                                  |
    +----------------------------------------------------------------------+
@@ -9,6 +9,7 @@ session_start();
    | DATA-WRITTEN   : 2006.11.29                                          |
    | AUTHER         : N.WATANUKI                                          |
    | UPDATE-WRITTEN : 2011.04.06                                          |
+   | UPDATE-WRITTEN : 2018.03.08 Upgrade to a newer version.              |
    +======================================================================+  */
     require_once("sschk.php");
     require_once("mcalender.php");  //mcalender月刊カレンダーを作成するクラス
@@ -46,10 +47,8 @@ class mschd extends mcalender {
             } else {
                 $sesLoginID = "wata";
             }
-            
             return ("<TD width = '60' valign = 'top' background='./resources/images/win-bg.gif align=left><FONT size='-1'>
                     <A href='testPOST.php?year=$this->year&month=$this->month&day=$dday&uid=$sesUserID' target='_blank'>" 
-            //return ("<TD width = '60' valign = 'top'" . $this->bgctoday . "align=left><FONT size='-1'>" 
             .$this->fctoday . $dday . $this->content ."\n");
         }
         
