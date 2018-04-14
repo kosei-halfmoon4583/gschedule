@@ -165,7 +165,8 @@ li a:hover {
     margin-left: auto;
     text-align: center;
     padding: 0px;
-    width: 780px;
+    /* width: 780px; */
+    width: 820px;
     background-color: #FFFFFF;
     border-right: double 4px #285FFF;
     border-left: double 4px #285FFF;
@@ -237,8 +238,13 @@ li a:hover {
     padding: 10px 0px 0px 0px;
 }
 
+.c0 {
+    color: #FFFFFF;
+    font-size: 12px;
+    line-height:1.1;
+}
 .c1 {
-    color: #330099;
+    color: #FFFFFF; 
     background: #999999;
     font-size: 12px;
     line-height:1.1;
@@ -253,13 +259,13 @@ li a:hover {
     text-align: center; 
     nowrap;
     background: #3399CC;
-    font-size: 14px;
+    font-size: 12px;
 }
 .c4 {
     color: #FFFFFF;
     text-align: left; 
     background-image: url("../../resources/images/layout-browser-hd-bg.gif");
-    font-size: 13.5px;
+    font-size: 12px;
 }
 .c5 {
     padding: 3px 3px 3px 3px;
