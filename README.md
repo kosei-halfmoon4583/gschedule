@@ -1,4 +1,4 @@
-Upgrade PHP version from "version:5.3.6i0" to "version:7.1.16". 
+Upgrade PHP version from "version:5.3.60" to "version:7.1.16". 
 Data-written: 2019/2/11 (Mon.)
 Author: Naoshi WATANUKI.
 Project name: gschedule.
