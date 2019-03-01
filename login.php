@@ -1,51 +1,65 @@
 <?php
 session_start();
-  /*======================================================================+
-   | PHP version 5.6.30                                                   |
-   +----------------------------------------------------------------------+
-   | Copyright (C) 2002.02.24 N.watanuki                                  |
-   +----------------------------------------------------------------------+
-   | Script-ID      : login.php                                           |
-   | DATA-WRITTEN   : 2002.02.24                                          |
-   | AUTHER         : N.WATANUKI                                          |
-   | UPDATE-WRITTEN : 2011.01.25                                          |
-   | UPDATE-WRITTEN : 2018.03.02 Upgrade to a newer version.              |
-   +======================================================================*/
+    /*======================================================================+
+     | PHP version 7.1.16                                                   |
+     +----------------------------------------------------------------------+
+     | Copyright (C) 2019.02.11 N.Watanuki                                  |
+     +----------------------------------------------------------------------+
+     | Script-ID      : login.php                                           |
+     | DATA-WRITTEN   : 2019.02.11                                          |
+     | AUTHER         : _.________                                          |
+     | UPDATE-WRITTEN : ____.__.__                                          |
+     +======================================================================*/
+    echo '<?xml version="1.0" encoding="utf-8"?>';
 ?>
-<?php echo '<?xml version="1.0" encoding="utf-8"?>'; ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<meta http-equiv="Content-Style-Type" content="text/css" />
-<meta http-equiv="Content-Script-Type" content="text/javascript" />
-<title>Schedule Management System</title>
-<link rel="stylesheet" href="./resources/css/styles-site.css" type="text/css" />
-</head>
-<body id="index" onLoad="document.login_form.frmuserid.focus()">
-<div id="container">
-<div id="header">
-    <h1>kosei-halfmoon</h1>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>Schedule Management.</title>
+        <link rel="stylesheet" type="text/css" 
+            href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" />
+        <link rel="stylesheet" type="text/css" href="./resource/css/sticky-footer.css" />
+
+        <script type="text/javascript">
+        </script>
+    </head>
+
+<body>
     <?php $wdate = date("Y-m-d"); ?>
-</div>
-
-<div id="center">
-<div class="content">
-    <form name="login_form" action="loginsub.php" method="POST">
-        <h2>Login</h2>
-            <?php print("<p>Today：&nbsp;$wdate</p> \n"); ?>
-        <dl>
-            <dt>ユーザーID</dt><dd><input type="text" name="frmuserid" /></dd>
-            <dt>パスワード</dt><dd><input type="password" name="frmpasswd" /></dd>
-        </dl>
-        <input type="image" name="login" width="101" height="40" src="./resources/images/bg.gif" class="singnin" />
+    <div class="container">
+    <div class="page-header">
+        <h3><a href=""> Schedule Management System.
+            <!--
+            <small>version 2.2.17<font color="#FFFFFF">.</font><font color="#000080">[&nbsp;<?php print("<p>Today：&nbsp;$wdate</p> \n"); ?>&nbsp;]</font></small>
+            -->
+            <small>&nbsp;version 2.2.4<font color="#FFFFFF">...</font><font color="#000080">[&nbsp;<?php print("Today：&nbsp;$wdate \n"); ?>&nbsp;]</font></small>
+            </a>
+        </h3>
+    </div>
+    <h4>Please Signin !</h4><br>
+    <form action="loginsub.php" method="POST">
+        <table>
+            <tr>
+                <td>UserID:&nbsp;</td>
+                <td><input type="text" name="frmuserid" placeholder="Your UserID" /></td>
+            </tr>
+            <tr>
+                <td>Password:&nbsp;</td>
+                <td><input type="password" name="frmpasswd" placeholder="Your Password" /></td>
+            </tr>
+            </table><br>
+            <button type="submit" class="btn btn-sm btn-primary">Sign in</button>&nbsp;
+            <button type="reset" class="btn btn-sm btn-primary">reset</button>
     </form>
-</div>
-</div>
-
-<div id="footer">
-<p>Schedule Management System Version 2.2.4<br />Copyright(C). 2009 Naoshi WATANUKI. Allright Reserved.</p>
-</div>
-</div>
+    </div>
+    <BR><BR>
+    
+    <!-- Footer Include --> 
+    <footer class="footer">
+        <div class="container">
+            <p class="text-muted">Copyright(C). 2019 Naoshi WATANUKI Allright Reserved.</p>
+        </div>
+    </footer>
 </body>
 </html>
