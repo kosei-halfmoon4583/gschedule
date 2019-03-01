@@ -3,13 +3,12 @@ session_start();
   /*======================================================================+
    | PHP version 5.6.30                                                   |
    +----------------------------------------------------------------------+
-   | Copyright (C) 2002.07.29 N.watanuki                                  |
+   | Copyright (C) 2018.07.25                                             |
    +----------------------------------------------------------------------+
    | Script-ID      : schdin.php                                          |
-   | DATA-WRITTEN   : 2002.07.29                                          |
-   | AUTHER         : N.WATANUKI                                          |
-   | UPDATE-WRITTEN : 2011.04.08                                          |
-   | UPDATE-WRITTEN : 2018.03.08 Upgrade to a newer version.              |
+   | DATA-WRITTEN   : 2018.07.25                                          |
+   | AUTHER         : _.________                                          |
+   | UPDATE-WRITTEN : ____.__.__                                          |
    +======================================================================*/
     require_once("sschk.php"); 
     require_once("sesReg.php");
@@ -154,6 +153,7 @@ function formCfschd() {
 /* [開始時間（分）] */
     print("<SELECT name='startmin' size='1'> \n");
 
+    /*
     $ss_min = 0;
     for ($i=0; $i<60; $i++) {
         if($i == $ssmin) {
@@ -164,6 +164,19 @@ function formCfschd() {
             $ms_timeStrings = sprintf("%02d",$ss_min);
             print("<OPTION value='$ms_timeStrings'>$ms_timeStrings</OPTION> \n");
             $ss_min++;
+        }
+    }
+    */
+    $ss_min = 0;
+    for ($i=0; $i<6; $i++) {
+        if($ss_min == $ssmin) {
+            $ms_timeStrings = sprintf("%02d",$ss_min);
+            print("<OPTION value='$ms_timeStrings' selected>$ms_timeStrings</OPTION> \n");
+            $ss_min = $ss_min + 10;
+        } else {
+            $ms_timeStrings = sprintf("%02d",$ss_min);
+            print("<OPTION value='$ms_timeStrings'>$ms_timeStrings</OPTION> \n");
+            $ss_min = $ss_min + 10;
         }
     }
     print("</SELECT> \n");
@@ -193,6 +206,7 @@ function formCfschd() {
     print("<SELECT name='endmin' size='1'> \n");
 
 /* [終了時間（分）] */
+    /*
     $se_min = 0;
     for ($i=0; $i<60; $i++) {
         if($i == $semin) {
@@ -203,6 +217,19 @@ function formCfschd() {
             $me_timeStrings = sprintf("%02d",$se_min);
             print("<OPTION value='$me_timeStrings'>$me_timeStrings</OPTION> \n");
             $se_min++;
+        }
+    }
+    */
+    $se_min = 0;
+    for ($i=0; $i<6; $i++) {
+        if($se_min == $semin) {
+            $me_timeStrings = sprintf("%02d",$se_min);
+            print("<OPTION value='$me_timeStrings' selected>$me_timeStrings</OPTION> \n");
+            $se_min = $se_min + 10;
+        } else {
+            $me_timeStrings = sprintf("%02d",$se_min);
+            print("<OPTION value='$me_timeStrings'>$me_timeStrings</OPTION> \n");
+            $se_min = $se_min + 10;
         }
     }
     print("</SELECT> \n");
@@ -222,7 +249,8 @@ function formCfschd() {
     /*---------------------------------------------------------------------------------*
      * 週間カレンダーから呼び出された場合には削除を指示するチェックボックスを表示する  *
      *---------------------------------------------------------------------------------*/
-    if ((isset($_SESSION["ssid"]))&&($sRet[3] == 2)) {
+    // if ((isset($_SESSION["ssid"]))&&($sRet[3] == 2)) {
+    if ((isset($_SESSION["ssid"]))&&($flag == 2)) {
         print("<INPUT type='checkbox' name='delFlag' value='t'> \n");
         print("<FONT color=Red>この予定を削除する</FONT> \n");
     }

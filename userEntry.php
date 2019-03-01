@@ -3,13 +3,12 @@ session_start();
   /*======================================================================+
    | PHP version 5.6.30                                                   |
    +----------------------------------------------------------------------+
-   | Copyright (C) 2010.02.16 N.watanuki                                  |
+   | Copyright (C) 2018.07.25 _.________                                  |
    +----------------------------------------------------------------------+
    | Script-ID      : userEntry.php                                       |
-   | DATA-WRITTEN   : 2010.02.16                                          |
-   | AUTHER         : N.WATANUKI                                          |
-   | UPDATE-WRITTEN : 2011.02.04                                          |
-   | UPDATE-WRITTEN : 2018.03.18 Upgrade to a newer version.              |
+   | DATA-WRITTEN   : 2018.07.25                                          |
+   | AUTHER         : _.________                                          |
+   | UPDATE-WRITTEN : ____.__.__                                          |
    +======================================================================*/
     require_once("sschk.php");    
     require_once("footer.php"); //footer(outer file.)
@@ -31,14 +30,14 @@ session_start();
 
 </HEAD>
 <BODY>
-<?php require_once("header.php"); ?>
+<?php require_once("header-sub.php"); ?>
 <div id="content">
 <!-- <div id="header"> -->
-<div id="menu">
-<?php require_once("menuBanner.php"); ?>
+<div id="menu-ad">
+<?php // require_once("menuBanner.php"); ?>
 </div>
 
-<div id="main3">
+<!-- [Google Search Window] 
 <form method=get action="http://www.google.co.jp/search" target="_blank">
 <table><tr><td>
 <a href="http://www.google.co.jp/" target="_blank">
@@ -51,6 +50,7 @@ border="0" alt="Google" align="absmiddle"></a>
 <input type=submit name=btnG value="Google 検索">
 </td></tr></table>
 </form>
+-->
 
 <?php
   /*=================================================================================*
@@ -68,7 +68,6 @@ border="0" alt="Google" align="absmiddle"></a>
     print("<A href='mcalen.php?year=$year&month=$month'><img src='./resources/images/btn_home1_5.gif' height='15' width='40'></A> \n");
     print("</div> \n");
 ?>
-</div>
 </div>
 </BODY>
 </HTML>

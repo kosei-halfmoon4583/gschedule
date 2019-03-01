@@ -1,16 +1,14 @@
 <?php
 session_start();
   /*==========================================================================+
-   | PHP version 5.3.8 -> version 5.6.30                                      |
+   | PHP version 5.6.30                                                       |
    +--------------------------------------------------------------------------+
-   | Copyright (C) 2002.07.16 N.watanuki                                      |
+   | Copyright (C) 2018.07.25 _.________                                      |
    +--------------------------------------------------------------------------+
    | Script-ID      : mcalen.php                                              |
-   | DATA-WRITTEN   : 2007.12.13                                              |
-   | AUTHER         : N.WATANUKI                                              |
-   | UPDATE-WRITTEN : 2012.03.31  MacOSX(version 10.7)へ移植                  |
-   | UPDATE-WRITTEN : 2014.06.02  表示変更                                    |
-   | UPDATE-WRITTEN : 2018.03.08  Alter session variable.                     |
+   | DATA-WRITTEN   : 2018.07.25                                              |
+   | AUTHER         : _.________                                              |
+   | UPDATE-WRITTEN : ____.__.__                                              |
    +==========================================================================*/
     require_once("sschk.php");
     require_once("mschd.php");
@@ -142,13 +140,14 @@ function memListSelect(p_strYear, p_strMonth) {
             <IMG src="./resources/images/popase.gif" height="19" width="18" alt="me!">
             <?php
                 print ("&nbsp");
-                print ("<FONT size='-1' color='blue'>Login：</FONT><FONT size='-1' color='gray'>&nbsp; $sesjpname</FONT> \n"); 
+                print ("<FONT size='-1' color='blue'>Login:</FONT><FONT size='-1' color='gray'>&nbsp; $sesjpname</FONT> \n"); 
             ?>
         </TD></TR>
         <TR><TD colspan="3">
             <?php
-                print ("<P align='right'><FONT size='-1' color='blue'>メンバー：</FONT>
-                <SELECT size='1' name='memberSelectionList' onchange=javascript:memListSelect('" . $year . "','" . $month . "')>\n");
+                // print ("<P align='right'><FONT size='-1' color='#FFFFFF'>.</FONT>
+                // <SELECT size='1' name='memberSelectionList' onchange=javascript:memListSelect('" . $year . "','" . $month . "')>\n");
+                print("<SELECT size='1' name='memberSelectionList' onchange=javascript:memListSelect('" . $year . "','" . $month . "')>\n");
                 $l_objUserList = new usrlist();
                 $l_objUserList->getUserList();
                 print ("</SELECT> \n");
@@ -168,8 +167,7 @@ function memListSelect(p_strYear, p_strMonth) {
         print ("<li><a href='mcalen.php' target='_top'><font color='#FFFFFF'>月間予定</font></a></li> \n");
         print ("<li><a href='wcalen.php' target='_top'><font color='#FFFFFF'>週間予定</font></a></li> \n");
         print ("<li><a href='todo.php' target='_top'><font color='#FFFFFF'>Todo登録</font></a></li> \n");
-        //print ("<li><a href='http://kosei-halfmoon.dyndns-ip.com/gs/hotel.php' target='_blank'><font color='#FFFFFF'>
-        print ("<li><a href='hotel.php' target='_blank'><font color='#FFFFFF'>
+        print ("<li><a href='hotel.php' target='_top'><font color='#FFFFFF'>
         ホテル検索</font></a></li> \n");
         print ("<li><a href='https://mail.google.com/mail/?account_id=kosei.halfmoon%40gmail.com#' target='_blank'><font color='#FFFFFF'>
         &nbsp;メール&nbsp;</font></a></li> \n");
@@ -189,8 +187,7 @@ function memListSelect(p_strYear, p_strMonth) {
         print ("<li><a href='mcalen.php' target='_top'><font color='#FFFFFF'>月間予定</font></a></li> \n");
         print ("<li><a href='wcalen.php' target='_top'><font color='#FFFFFF'>週間予定</font></a></li> \n");
         print ("<li><a href='todo.php' target='_top'><font color='#FFFFFF'>Todo登録</font></a></li> \n");
-        //print ("<li><a href='http://kosei-halfmoon.dyndns-ip.com/gs/hotel.php' target='_blank'><font color='#FFFFFF'>
-        print ("<li><a href='hotel.php' target='_blank'><font color='#FFFFFF'>
+        print ("<li><a href='hotel.php' target='_top'><font color='#FFFFFF'>
         ホテル検索</font></a></li> \n");
         print ("<li><a href='lout.php' target='_top'><font color='#FFFFFF'>ログアウト</font></a></li> \n");
         print ("</ul> \n");
@@ -235,6 +232,7 @@ function memListSelect(p_strYear, p_strMonth) {
      <TBODY style="font-size:10pt">
          <TR><TD>&nbsp;</TD></TR>
          <TR><TD>
+         <!--
              <a href="https://www.facebook.com/naoshiw" target="_TOP" 
                  style="font-family: &quot;lucida grande&quot;,tahoma,verdana,arial,sans-serif; font-size: 11px; 
                  font-variant: normal; font-style: normal; font-weight: normal; color: #3B5998; text-decoration: 
@@ -248,6 +246,7 @@ function memListSelect(p_strYear, p_strMonth) {
                              font-style: normal; font-weight: normal; 
                              color: #3B5998; text-decoration: none;" 
  title="&#x81ea;&#x5206;&#x3060;&#x3051;&#x306e;&#x30d0;&#x30ca;&#x30fc;&#x3092;&#x4f5c;&#x6210;&#x3057;&#x307e;&#x3057;&#x3087;&#x3046;&#x3002;">Create banner.</a>
+        -->
          </TD></TR>
 </div>
 </BODY>

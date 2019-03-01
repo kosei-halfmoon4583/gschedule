@@ -1,28 +1,30 @@
 <?php
   /*==========================================================================+
-   | PHP version 4.4.2                                                        |
+   | PHP version 5.6.30                                                       |
    +--------------------------------------------------------------------------+
-   | Copyright (C) 2002.07.16 N.watanuki                                      |
+   | Copyright (C) 2018.07.25 _.________                                      |
    +--------------------------------------------------------------------------+
    | Script-ID      : footer.php                                              |
-   | DATA-WRITTEN   : 2010.03.12                                              |
-   | AUTHER         : N.WATANUKI                                              |
-   | UPDATE-WRITTEN : 2011.02.04                                              |
+   | DATA-WRITTEN   : 2018.07.25                                              |
+   | AUTHER         : _.________                                              |
+   | UPDATE-WRITTEN : ____.__.__                                              |
    +==========================================================================*/
    $Agent = getenv( "HTTP_USER_AGENT" );
  
-   if( ereg( "Safari", $Agent ) ){
+   $pattern = "!Safari!";
+
+   if(preg_match($pattern, $Agent)){
        print("<DIV id='footer-center'>");
-       print("<PRE>");
+       print("<PRE class='c5'>");
        print("Schedule Management System Version 2.2.4 \n");
-       print("Copyright(C.) 2009 <A HREF='mailto:kosei.halfmoon@gmail.com'><U>Naoshi WATANUKI.</U></A> Allright Reserved.");
+       print("Copyright(C.) 2019 <A HREF='mailto:kosei.halfmoon@gmail.com'><U>N.WATANUKI</U></A> Allright Reserved.");
        print("</PRE> \n");
        print("</DIV> \n");
    } else {
        print("<DIV id='footer-center'>");
        print("<PRE class='c5'>");
        print("Schedule Management System Version 2.2.4 \n");
-       print("Copyright(C.) 2009 <A HREF='mailto:kosei.halfmoon@gmail.com'><U>Naoshi WATANUKI.</U></A> Allright Reserved.");
+       print("Copyright(C.) 2019 <A HREF='mailto:kosei.halfmoon@gmail.com'><U>N.WATANUKI</U></A> Allright Reserved.");
        print("</PRE> \n");
        print("</DIV> \n");
    }
