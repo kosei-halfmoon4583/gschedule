@@ -1,14 +1,14 @@
 <?php
 /* +======================================================================+
-   | PHP version 4.2.1                                                    |
+   | PHP version 7.1.16                                                   |
    +----------------------------------------------------------------------+
-   | Copyright (C) 2002.07.24 N.watanuki                                  |
+   | Copyright (C) 2019.03.02 N.watanuki.                                 |
    +----------------------------------------------------------------------+
    | Database Connect Script                                              |
    | Script-ID      : dsn.php                                             |
-   | DATA-WRITTEN   : 2002.02.24                                          |
-   | AUTHER         : N.WATANUKI                                          |
-   | UPDATE-WRITTEN : 2007.12.06                                          |
+   | DATA-WRITTEN   : 2018.07.25                                          |
+   | AUTHER         : _.________                                          |
+   | UPDATE-WRITTEN : ____.__.__                                          |
    |                                                                      |
    | DSN DB接続文字列をiniファイルから読み込む                            |
    | (*データベース接続情報を隠すため)                                    |
@@ -19,8 +19,8 @@
    |  $fp = fopen('/usr/local/apache2/htdocs/gs/config/gscdsn.ini','r');  |
    +======================================================================+ */
     function get_dsn() {
-        $fp = fopen("C:\Apache2\htdocs\gs\config\gscdsn.ini","r");  // for Windows
-        //$fp = fopen('/usr/local/apache2/htdocs/gs/config/gscdsn.ini','r'); /* for Linux */
+        //$fp = fopen("C:\Apache2\htdocs\gs\config\gscdsn.ini","r");  // for Windows
+        $fp = fopen('/usr/local/apache2/htdocs/gs/config/gscdsn.ini','r'); /* for Linux */
         if ( $fp == false ){
             die("dsn設定ファイルが見つかりません！");
         }
@@ -29,7 +29,6 @@
         return $dsn;
     }
 
-  /* DBMSܹԤ˴ؤ・unctionﾊFor Test 2008/01/25) */
     function get_opt() {
         $options = array(
             'debug'       => 2,
