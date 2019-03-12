@@ -1,15 +1,14 @@
 <?php
 session_start();
   /*======================================================================+
-   | PHP version 5.6.30                                                   |
+   | PHP version 7.1.16                                                   |
    +----------------------------------------------------------------------+
-   | Copyright (C) 2002.08.03 N.watanuki                                  |
+   | Copyright (C) 2018.07.25 _.________                                  |
    +----------------------------------------------------------------------+
    | Script-ID      : wcalen.php                                          |
-   | DATA-WRITTEN   : 2002.08.03                                          |
-   | AUTHER         : N.WATANUKI                                          |
-   | UPDATE-WRITTEN : 2007.12.09                                          |
-   | UPDATE-WRITTEN : 2018.03.03 Upgrade to a newer version.              |
+   | DATA-WRITTEN   : 2018.07.25                                          |
+   | AUTHER         : _.________                                          |
+   | UPDATE-WRITTEN : 2019.03.12                                          |
    +======================================================================*/
     require_once("sschk.php");
     require_once("wschd.php"); 
@@ -18,31 +17,31 @@ session_start();
     $header_title = "[ 週間予定 ]";
 ?>
 <script type="text/javascript">
-function nextweek() { 
-    days = 7;
-    url = "weekadd.php";
-    url = url + "?days=" + days;
-    location.href = url;
-}
-function thisweek() { 
-    days = 0;
-    url = "thisweek.php";
-    url = url + "?days=" + days;
-    location.href = url;
-}
-function lastweek() {
-    days = -7;
-    url = "weekadd.php";
-    url = url + "?days=" + days;
-    location.href = url;
-}
+    function nextweek() { 
+        days = 7;
+        url = "weekadd.php";
+        url = url + "?days=" + days;
+        location.href = url;
+    }
+    function thisweek() { 
+        days = 0;
+        url = "thisweek.php";
+        url = url + "?days=" + days;
+        location.href = url;
+    }
+    function lastweek() {
+        days = -7;
+        url = "weekadd.php";
+        url = url + "?days=" + days;
+        location.href = url;
+    }
 </script>
 
 <HTML>
 <HEAD>
-<meta http-equiv="Content-Type" content="text/html;CHARSET=UTF-8">
-<TITLE>【週間予定表】</TITLE>
-<link rel="stylesheet" type="text/css" href="./resources/css/gs.css" />
+    <meta http-equiv="Content-Type" content="text/html;CHARSET=UTF-8">
+    <TITLE>【週間予定表】</TITLE>
+    <link rel="stylesheet" type="text/css" href="./resources/css/gs.css" />
 </HEAD>
 <BODY>
 
@@ -53,7 +52,6 @@ function lastweek() {
 
 <pre style="color:#3399CC;">
   [ お天気は如何でしょ？]
-  
 </pre>
 
 <script type="text/javascript" src="http://n-de.jp/bp/wn/suzunari.js#wn_pos=4410">
@@ -65,6 +63,8 @@ function lastweek() {
 
 <div id="main3">
 <?php 
+    $flag = "";
+
     if (!isset($_SESSION["sCurMonday"])) {
         $_SESSION["sCurMonday"] = get_thisWeek_monday();
     }
@@ -76,7 +76,7 @@ function lastweek() {
  
     /* 今週ボタンが押下されたかどうか判断するためのFlag */
     if (!isset($_SESSION["flag"])) {
-        $_SESSION["flag"]; 
+      // $_SESSION["flag"]; 
     } else {
         $flag = $_SESSION["flag"];
     }
@@ -104,9 +104,9 @@ function lastweek() {
         $wschd->disp_calen();
         print("</FORM> \n");
     }
-    /*-------------------------------------------------*
-     * 今日を含む週の月曜日の日付をYYYYMMDD形式で返す  *
-     *-------------------------------------------------*/
+    /*------------------------------------------------*
+     * 今日を含む週の月曜日の日付をYYYYMMDD形式で返す *
+     *------------------------------------------------*/
     function get_thisWeek_monday() {
         $today = getdate();  //今日の日付を取得
         $wday = $today["wday"];
