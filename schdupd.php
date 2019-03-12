@@ -1,15 +1,14 @@
 <?php
 session_start();
   /*======================================================================+
-   | PHP version 5.6.30                                                   |
+   | PHP version 7.1.16                                                   |
    +----------------------------------------------------------------------+
-   | Copyright (C) 2002.07.29 N.watanuki                                  |
+   | Copyright (C) 2018.07.25 _.________                                  |
    +----------------------------------------------------------------------+
    | Script-ID      : schdupd.php                                         |
-   | DATA-WRITTEN   : 2002.07.29                                          |
-   | AUTHER         : N.WATANUKI                                          |
-   | UPDATE-WRITTEN : 2011.04.08                                          |
-   | UPDATE-WRITTEN : 2018.03.15 Update to a newer version.               |
+   | DATA-WRITTEN   : 2018.07.25                                          |
+   | AUTHER         : _.________                                          |
+   | UPDATE-WRITTEN : 2019.03.12                                          |
    +======================================================================*/
     require_once("sschk.php"); 
     require_once("db_connect.php");
@@ -26,8 +25,8 @@ session_start();
     $sql = "SELECT schdtb.*,accounttb.jpname FROM schdtb left join accounttb";
     $sql .= " on schdtb.suserid = accounttb.userid WHERE sid = $sid";
 
-    $res = mysql_query($sql, $conn);
-    $nrow = mysql_num_rows($res);  
+    $res = mysqli_query($conn, $sql);
+    $nrow = mysqli_num_rows($res);  
 
     //他ユーザーによりレコードが削除されていた場合のError画面表示
     if($nrow == 0){
@@ -53,7 +52,7 @@ session_start();
         print ("</HTML> \n");
         exit;
     }
-    $row = mysql_fetch_assoc($res);
+    $row = mysqli_fetch_assoc($res);
     $sid = $row["sid"];
     $sdate = $row["sdate"];
     $sstime = $row["sstime"];
@@ -80,9 +79,10 @@ session_start();
     $_SESSION["oldschd"][5] = $row["cont1"];
     $_SESSION["oldschd"][6] = $row["cont2"];
 
-    mysql_free_result($result);
+    mysqli_free_result($result);
     $_SESSION["ssid"] = $sid;
-    mysql_close($conn);
-    header("Location:schdin.php?year=$sschd[0]&month=$sschd[1]&day=$sschd[2]&flag=$flag");
+    mysqli_close($conn);
+    // header("Location:schdin.php?year=$sschd[0]&month=$sschd[1]&day=$sschd[2]&flag=$flag");
+    header("Location:schdin.php?year=$year&month=$month&day=$day&flag=$flag");
     exit();
 ?>
