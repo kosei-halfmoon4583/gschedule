@@ -1,44 +1,32 @@
 <?php
   /*======================================================================+
-   | PHP version 4.4.2                                                    |
+   | PHP version 7.1.16                                                   |
    +----------------------------------------------------------------------+
-   | Copyright(C). 2008.01.22 N.watanuki                                  |
+   | Copyright(C). 2018.07.25 _.________                                  |
    +----------------------------------------------------------------------+
    | Script-ID      : wekUreg.php                                         |
-   | DATA-WRITTEN   : 2008.01.22                                          |
-   | AUTHER         : N.WATANUKI                                          |
-   | UPDATE-WRITTEN : ____.__.__                                          |
+   | DATA-WRITTEN   : 2018.07.25                                          |
+   | AUTHER         : _.________                                          |
+   | UPDATE-WRITTEN : 2019.03.12                                          |
    +======================================================================*/
-/* Special Routine */
-/* wcalen.php実行時に今週以外の週を表示させたままmcale.phpに戻ると、
-   次回、wcalen.phpを開いたときに今週がデフォルト表示されない、
-   この問題を解消するためにmcalen.phpに戻ってきたときに、wcalen.phpで
-   発行したSessionをクリアする。
-*/
+/* [Special Routine] ------------------------------------------------ *
+   wcalen.php実行時に今週以外の週を表示させたままmcalen.phpに戻ると、 *
+   次回、wcalen.phpを開いたときに今週がデフォルト表示されない、       *
+   この問題を解消するためにmcalen.phpに戻ってきたときに、wcalen.phpで *
+   発行したSessionをクリアする。                                      *
+* ------------------------------------------------------------------- */
 
-$sCurMonday = "sCurMonday";
-$thisMonday = "thisMonday";
-$flag = "flag";
+    $sCurMonday = "sCurMonday";
+    $thisMonday = "thisMonday";
+    $flag = "flag";
 
-/*
-if (session_is_registered("sCurMonday")) {
-    session_unregister("sCurMonday");
-}
-if (session_is_registered("thisMonday")) {
-    session_unregister("thisMonday");
-}
-if (session_is_registered("flag")) {
-    session_unregister("flag");
-}
-*/
-
-if (isset($sCurMonday)) {
-    unset($sCurMonday);
-}
-if (isset($thisMonday)) {
-    unset($thisMonday);
-}
-if (isset($flag)) {
-    unset($flag);
-}
+    if (isset($sCurMonday)) {
+        unset($sCurMonday);
+    }
+    if (isset($thisMonday)) {
+        unset($thisMonday);
+    }
+    if (isset($flag)) {
+        unset($flag);
+    }
 ?>
