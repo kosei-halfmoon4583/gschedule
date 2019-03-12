@@ -1,13 +1,13 @@
 <?php
 /* +======================================================================+
-   | PHP version 5.6.30                                                   |
+   | PHP version 7.1.16                                                   |
    +----------------------------------------------------------------------+
    | Copyright (C) 2018.07.25 _.________                                  |
    +----------------------------------------------------------------------+
    | Script-ID      : mcalender.php (Base Class)                          |
    | DATA-WRITTEN   : 2018.07.25                                          |
-   | AUTHER         : _.________                                          |
-   | UPDATE-WRITTEN : 2018.07.25                                          |
+   | AUTHER         : N.watanuki                                          |
+   | UPDATE-WRITTEN : 2019.03.12                                          |
    +======================================================================+ */
     class mcalender{
         var $year;
@@ -38,9 +38,9 @@
             $this->year = $year; 
             $this->month = $month; 
         }
-        /*---------------------------------------*
-         *   配列にカレンダーを作成              *
-         *---------------------------------------*/
+        /*------------------------------------------*
+         *   配列にカレンダーを作成 [6rows * 7cols] *
+         *------------------------------------------*/
         function set_calen() {
             $set_day = 1;
             //曜日を取得する（月初1日の曜日を取得）
@@ -56,17 +56,42 @@
             $days = date("t",mktime(0,0,0,$this->month,$set_day,$this->year)); 
 
             $stop = "";
-            for($i = 0; $i <= 5; $i++) {          //週0から5（最大6週まで）
-                if($stop != "Stop") {
-                    for($j = 0; $j <= 6; $j++) {  //日0から6まで
-                        if (($i == 0)&&($j < $set_wday)) { //月初めの処理
-                            $this->caleAry[$i][$j] = "";
-                        } else {
-                            if ($set_day <= $days) {
-                                $this->caleAry[$i][$j] = $set_day++;
-                            } else {
-                                $stop = "Stop";
+
+            /* 2019/3/10 Update the program logic written by N.watanuki. -------------- *
+             *  Calendarの週を最大６週としているが、月の最後の日(30日，31日）が、
+             *  7Column目になる月においては、日付が表示されない空の行が表示されてしまう。
+             *  これを防ぐための判断(if(($set_wdat == 4 && ...)を追加
+             * ------------------------------------------------------------------------ */
+            if(($set_wday == 4 && $days == 31) || ($set_wday == 5 && $days == 30)) {
+                for($i = 0; $i <= 4; $i++) {          //週0から週4（最大6週まで）
+                    if($stop != "Stop") {
+                        for($j = 0; $j <= 6; $j++) {  //日0から6まで
+                            if (($i == 0)&&($j < $set_wday)) { //月初めの処理
                                 $this->caleAry[$i][$j] = "";
+                            } else {
+                                if ($set_day <= $days) {
+                                    $this->caleAry[$i][$j] = $set_day++;
+                                } else {
+                                    $stop = "Stop";
+                                    $this->caleAry[$i][$j] = "";
+                                }
+                            }
+                        }
+                    }
+                }
+            } else {
+                for($i = 0; $i <= 5; $i++) {          //週0から5（最大6週まで）
+                    if($stop != "Stop") {
+                        for($j = 0; $j <= 6; $j++) {  //日0から6まで
+                            if (($i == 0)&&($j < $set_wday)) { //月初めの処理
+                                $this->caleAry[$i][$j] = "";
+                            } else {
+                                if ($set_day <= $days) {
+                                    $this->caleAry[$i][$j] = $set_day++;
+                                } else {
+                                    $stop = "Stop";
+                                    $this->caleAry[$i][$j] = "";
+                                }
                             }
                         }
                     }
@@ -104,7 +129,7 @@
                 $j=0;
 
                 // For Debug 2019/2/2 
-                // $sesUserID = "";
+                $sesUserID = "";
                 
                 foreach ($week as $draw_day) {
                     print($this->set_string($draw_day,$j,$sesUserID));
