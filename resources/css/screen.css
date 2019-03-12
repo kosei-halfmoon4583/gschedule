@@ -1,3 +1,7 @@
+/*========================================================= *
+ * Copyright (C) 2019 Naoshi.WATANUKI  All Rights Reserved. *
+ * http://kosei-halfmoon.dyndns-ip.com/gshcesule/           * 
+ *========================================================= */
 html, body { padding: 0px 0px 10px 0px; border: 0; margin: 0; }
 body { font: normal 11px verdana, sans-serif; color: #333; line-height: 19px; margin: 0; }
 #container { clear: both; text-align: left; padding: 0 0; margin: 0 0; }
@@ -51,15 +55,15 @@ form { padding: 0; margin: 0; }
 #footerContainer { clear: both; }
 #line-top { 
     position:absolute;    
-    top:36px;    
+    top:38px;    
     width:994px;
 }
 #treeDiv1 {
     position: absolute; 
     left:106px;
-    top: 80px; 
+    top: 70px; 
     width: 258px; 
-    height: 478px; 
+    height: 548px; 
     overflow: auto; 
     background-color: #ffffff; 
     color: #333333; 
@@ -69,7 +73,7 @@ form { padding: 0; margin: 0; }
 #yui { 
     position:absolute; 
     left:120px; 
-    top:538px; 
+    top:598px; 
     height:15px; 
     font-size:8pt; 
     color:gray;
@@ -77,26 +81,32 @@ form { padding: 0; margin: 0; }
 #chkbox1 { 
     position:absolute; 
     left:106px; 
-    top:560px; 
-    width:250px; 
+    top:622px; 
+    width:110px; 
     height:16px; 
     font-size:9pt; 
     color:gray;
 }
+#indi1 { 
+    position:absolute; 
+    left:226px;
+    top:624px; 
+    width:240px;
+}
+#back-home { 
+    position:absolute; 
+    left:108px;
+    top:644px; 
+    width:100px;
+}
 #map { 
     position:absolute; 
     left: 368px; 
-    top: 80px; 
-    width: 620px; 
-    height: 478px; 
+    top: 70px; 
+    width: 740px; 
+    height: 548px; 
     border: 1px 
     solid blue;
-}
-#indi1 { 
-    position:absolute; 
-    left:106px;
-    top:576px; 
-    width:240px;
 }
 #hotel { 
     position:absolute; 
@@ -107,7 +117,7 @@ form { padding: 0; margin: 0; }
 }
 #msg1 {    
     position:absolute;    
-    left:354px;    
+    left:440px;    
     bottom:12px;    
     font-size:8.5pt;    
     color:gray;    
