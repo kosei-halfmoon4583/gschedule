@@ -1,15 +1,14 @@
 <?php
 session_start();         
   /*======================================================================+
-   | PHP version 5.6.30                                                   |
+   | PHP version 7.1.16                                                   |
    +----------------------------------------------------------------------+
-   | Copyright (C) 2002.07.16 N.watanuki                                  |
+   | Copyright (C) 2018.07.25 _.________                                  |
    +----------------------------------------------------------------------+
    | Script-ID      : loginsub.php                                        |
-   | DATA-WRITTEN   : 2002.07.16                                          |
-   | AUTHER         : N.WATANUKI                                          |
-   | UPDATE-WRITTEN : 2011.04.05                                          |
-   | UPDATE-WRITTEN : 2018.0302 Upgrade to a newer version.               |
+   | DATA-WRITTEN   : 2018.07.25                                          |
+   | AUTHER         : _.________                                          |
+   | UPDATE-WRITTEN : 2019.03.12                                          |
    +======================================================================*/
     require_once("db_connect.php");
     require_once("footer.php"); 
@@ -19,8 +18,8 @@ session_start();
 
     //Admin,jpname 追加 for group
     $sql = "SELECT passwd,admin,jpname FROM accounttb WHERE userid = '$frmuserid'";
-    $res = mysql_query($sql, $conn);
-    $nbrows = mysql_num_rows($res);  
+    $res = mysqli_query($conn, $sql);
+    $nbrows = mysqli_num_rows($res);  
 
     if($nbrows == 0) {
         print ("<HTML> \n");
@@ -31,13 +30,13 @@ session_start();
         print ("</HEAD> \n");
         print ("<BODY> \n");
         print ("<div id='content'> \n");
-        $header_title = "[ Login ID Error! ]";
+        $header_title = "<FONT color='red'>[ Login ID Error! ]</FONT>";
         require_once("header.php");
         print ("<div id='menu'> \n");
         print ("<pre style='color:#FFFFFF;'>.</pre> \n");
         print ("</div> \n");
         print ("<div id='main3'> \n");    
-        print ("<FONT color='red'>ログインIDが違います。$frmuserid</FONT><BR><BR>");
+        print ("<FONT color='red'>ログインIDが違います：</FONT>$frmuserid<BR><BR>");
         print ("<A href='login.php'><U>再ログインしてください</U></A>");
         print ("</div> \n");
         print ("</div> \n");
@@ -47,7 +46,7 @@ session_start();
         exit();
     }
 
-    $nbrows = mysql_fetch_array($res);
+    $nbrows = mysqli_fetch_array($res);
     if ($nbrows[0] != $frmpasswd) {
         print ("<HTML> \n");
         print ("<HEAD> \n");
@@ -57,13 +56,13 @@ session_start();
         print ("</HEAD> \n");
         print ("<BODY> \n");
         print ("<div id='content'> \n");
-        $header_title = "[ Login Password Error! ]";
+        $header_title = "<FONT color='red'>[ Login Password Error! ]</FONT>";
         require_once("header.php");
         print ("<div id='menu'> \n");
         print ("<pre style='color:#FFFFFF;'>.</pre> \n");
         print ("</div> \n");
         print ("<div id='main3'> \n");    
-        print ("<FONT color='red'>パスワードが違います。</FONT><BR><BR>");
+        print ("<FONT color='red'>パスワードが違います！</FONT><BR><BR>");
         print ("<A href='login.php'><U>再ログインしてください</U></A>");
         print ("</div> \n");
         print ("</div> \n");
@@ -73,8 +72,8 @@ session_start();
         exit();
     }
 
-    mysql_free_result($res);
-    mysql_close($conn);
+    mysqli_free_result($res);
+    mysqli_close($conn);
 
     // Update 2018/02/04 from 'session_register() to $_SESSION['']  
     $_SESSION["sesLoginID"] = $frmuserid;
