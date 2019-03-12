@@ -2,13 +2,13 @@
   /*==========================================================================+
    | PHP version 7.1.16                                                       |
    +--------------------------------------------------------------------------+
-   | Copyright (C) 2018.07.25 N.watanuki                                      |
+   | Copyright (C) 2018.07.25 _.________                                      |
    +--------------------------------------------------------------------------+
    | Hotel Search Script                                                      |
-   | Script-ID      : hotel.php                                               |
+   | Script-ID      : hotels.php                                              |
    | DATA-WRITTEN   : 2018.07.25                                              |
    | AUTHER         : _.________                                              |
-   | UPDATE-WRITTEN : ____.__.__                                              |
+   | UPDATE-WRITTEN : 2019.03.12                                              |
    +==========================================================================*/
     $crrentdate = getdate();
     $dyear = $crrentdate["year"];
@@ -29,13 +29,15 @@
     <link rel="stylesheet" type="text/css" href="./resources/css/tree.css" />
     <link rel="stylesheet" type="text/css" href="./resources/css/gs.css" />
     <script type="text/javascript" src="./js/yahoo-min.js" ></script>
-    <script type="text/javascript" src="./js/connection-min.js" ></script>
     <script type="text/javascript" src="./js/treeview-min.js" ></script>
-    <script type="text/javascript" src="./js/event-min.js" ></script>
     <script type="text/javascript" src="./js/mktreebyarray4.js" ></script>
     <script type="text/javascript" src="./js/jsgt_dragfloatfade.js"></script>
     <script type="text/javascript" src="./js/jsgt_indicator.js"></script>
+    <!--
+    <script type="text/javascript" src="./js/connection-min.js" ></script>
+    <script type="text/javascript" src="./js/event-min.js" ></script>
     <script type="text/javascript" src="./js/downloadxml.js"></script>
+    -->
 
     <!-- Google Map API Key set. -->
     <script type="text/javascript" 
@@ -131,9 +133,11 @@
         tmp_h_Oj[h_id].h_y     = getHv('Y',hotelDom);         // 緯度 Latitude.
         tmp_h_Oj[h_id].h_la    = getHv('LargeArea',hotelDom); // 大エリア
         tmp_h_Oj[h_id].h_sa    = getHv('SmallArea',hotelDom); // 小エリア
-        if(hotelDom.getElementsByTagName('PictureURL')[0].firstChild!=null)
-              tmp_h_Oj[h_id].h_ph  = getHv('PictureURL',hotelDom);
-        else  tmp_h_Oj[h_id].h_ph  = "./resources/images/kouzi2_i.gif";
+        if(hotelDom.getElementsByTagName('PictureURL')[0].firstChild!=null) {
+            tmp_h_Oj[h_id].h_ph = getHv('PictureURL',hotelDom);
+        } else {
+            tmp_h_Oj[h_id].h_ph = "./resources/images/kouzi2_i.gif";
+        }
 
         //for debug 2019/2/21 remove comments below ..
         // wkOj.preLoad(h_id); 
