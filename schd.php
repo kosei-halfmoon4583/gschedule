@@ -1,15 +1,14 @@
 <?php
 session_start();
   /*======================================================================+
-   | PHP version 5.6.30                                                   |
+   | PHP version 7.1.16                                                   |
    +----------------------------------------------------------------------+
-   | Copyright (C) 2002.07.26 N.watanuki                                  |
+   | Copyright (C) 2018.07.25 _.________                                  |
    +----------------------------------------------------------------------+
    | Script-ID      : schd.php                                            |
-   | DATA-WRITTEN   : 2002.07.26                                          |
-   | AUTHER         : N.WATANUKI                                          |
-   | UPDATE-WRITTEN : 2011.04.08                                          |
-   | UPDATE-WRITTEN : 2018.03.08 To adapt version 5.6.30                  |
+   | DATA-WRITTEN   : 2018.07.25                                          |
+   | AUTHER         : _.________                                          |
+   | UPDATE-WRITTEN : 2019.03.12                                          |
    +======================================================================*/
     require_once("sschk.php");    
     require_once("db_connect.php");
@@ -88,12 +87,12 @@ function schd_del(sid,year,month,day){
     $sql = "SELECT schdtb.*,accounttb.jpname FROM schdtb left join accounttb";
     $sql .= " ON schdtb.suserid = accounttb.userid";
     $sql .= " WHERE sdate = '$cond' ORDER by sstime";
-    $res = mysql_query($sql, $conn);
-    $nrow = mysql_num_rows($res);  
+    $res = mysqli_query($conn, $sql);
+    $nrow = mysqli_num_rows($res);  
 
-    if(mysql_error($conn)) {
+    if(mysqli_error($conn)) {
         print "レコードが取得できません…";
-        echo mysql_errno($conn) . ": " . mysql_error($conn) . "\n";
+        echo mysqli_errno($conn) . ": " . mysqli_error($conn) . "\n";
         session_destroy();
         exit;
     }
@@ -107,7 +106,7 @@ function schd_del(sid,year,month,day){
     print("<TD class='c4'>&nbsp;開始予定&nbsp;</TD><TD class='c4'>&nbsp;終了予定&nbsp;</TD>
            <TD class='c4'>&nbsp;内　容</TD><TD class='c4'>&nbsp;登録者</TD>
            <TD class='c4'>&nbsp;操　作</TD></TR> \n");
-    while ($row = mysql_fetch_assoc($res)) { 
+    while ($row = mysqli_fetch_assoc($res)) { 
         $sid = $row["sid"];
         $sdate = $row["sdate"];
         $sstime = $row["sstime"];
@@ -140,8 +139,8 @@ function schd_del(sid,year,month,day){
     print("</TABLE></FORM> \n");
     print("<A href='mcalen.php?year=$year&month=$month'><img src='./resources/images/btn_home1_5.gif' height='15' width='40'></A> \n");
 
-    mysql_free_result($res);
-    mysql_close($conn);
+    mysqli_free_result($res);
+    mysqli_close($conn);
 ?>
 </div>
 </div>
