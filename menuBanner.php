@@ -1,13 +1,13 @@
 <?php
   /*======================================================================+
-   | PHP version 5.3.8                                                    |
+   | PHP version 7.1.16                                                   |
    +----------------------------------------------------------------------+
    | Copyright (C) 2014.05.30 NAOSHI.watanuki                             |
    +----------------------------------------------------------------------+
    | Script-ID      : menuBanner.php                                      |
    | DATA-WRITTEN   : 2014.06.13                                          |
    | AUTHER         : N.WATANUKI                                          |
-   | UPDATE-WRITTEN : ____.__.__                                          |
+   | UPDATE-WRITTEN : 2019.03.12                                          |
    +======================================================================*/
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
