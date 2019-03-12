@@ -1,15 +1,14 @@
 <?php
 session_start();
   /*======================================================================+
-   | PHP version 5.6.30                                                   |
+   | PHP version 7.1.16                                                   |
    +----------------------------------------------------------------------+
-   | Copyright (C) 2002.08.02 N.watanuki                                  |
+   | Copyright (C) 2018.07.25 _.________                                  |
    +----------------------------------------------------------------------+
    | Script-ID      : todoupd.php                                         |
-   | DATA-WRITTEN   : 2002.08.02                                          |
-   | AUTHER         : N.WATANUKI                                          |
-   | UPDATE-WRITTEN : 2018.02.28                                          |
-   | UPDATE-WRITTEN : 2018.03.18 Upgrade to a newer version.              |
+   | DATA-WRITTEN   : 2018.07.25                                          |
+   | AUTHER         : _.________                                          |
+   | UPDATE-WRITTEN : 2019.03.12                                          |
    +======================================================================*/
     require_once("sschk.php");    
     require_once("db_connect.php");
@@ -19,8 +18,8 @@ session_start();
     // todotbテーブル
     $sql = "select todotb.*,accounttb.jpname from todotb left join accounttb";
     $sql .= " on todotb.tuserid = accounttb.userid where tid = $tid";
-    $res = mysql_query($sql, $conn);
-    $nbrows = mysql_num_rows($res);  
+    $res = mysqli_query($conn, $sql);
+    $nbrows = mysqli_num_rows($res);  
 
     //他のユーザーにレコードが削除されていた場合
     if($nbrows == 0) {
@@ -46,7 +45,7 @@ session_start();
         print ("</HTML> \n");
         exit;
     }
-    $row = mysql_fetch_assoc($res);
+    $row = mysqli_fetch_assoc($res);
     $tid = $row["tid"];
     $tdate = $row["tdate"];
 
@@ -61,9 +60,9 @@ session_start();
     $_SESSION["oldtodo"] = array();
     $_SESSION["oldtodo"][0] = $row["tdate"];
     $_SESSION["oldtodo"][1] = $row["todo"];
-    mysql_free_result($res);
+    mysqli_free_result($res);
 
     $_SESSION["stid"] = $tid;
     header("Location: todoin.php");
-    mysql_close($conn);
+    mysqli_close($conn);
 ?>
