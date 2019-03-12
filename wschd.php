@@ -1,13 +1,13 @@
 <?php
   /*======================================================================+
-   | PHP version 4.4.2                                                    |
+   | PHP version 7.1.16                                                   |
    +----------------------------------------------------------------------+
-   | Copyright (C) 2002.08.07 N.watanuki                                  |
+   | Copyright (C) 2018.07.25 _.________                                  |
    +----------------------------------------------------------------------+
    | Script-ID      : wschd.php                                           |
-   | DATA-WRITTEN   : 2002.08.07                                          |
-   | AUTHER         : N.WATANUKI                                          |
-   | UPDATE-WRITTEN : 2007.12.14                                          |
+   | DATA-WRITTEN   : 2018.07.25                                          |
+   | AUTHER         : _.________                                          |
+   | UPDATE-WRITTEN : 2019.03.12                                          |
    +======================================================================*/
     require_once("wcalender.php");  // wcalender 月間カレンダーを作成するクラス
     require_once("db_connect.php");  // Database connect.
@@ -27,40 +27,38 @@ class wschd extends wcalender {
      *  DB Connect(MySQL) *
      *--------------------*/
      function connectDB() {
-        //define("DBSV", "localhost");
-        //define("DBSV", "127.0.0.1");
-        //define("DBNAME", "gschedule");
-        //define("DBUSER", "nao");
-        //define("DBPASS", "naow2696");
-        //define("DBPASS", "naow4583");
 
-        $conn = mysql_connect(DBSV, DBUSER, DBPASS) or 
-            die("Could not connect to Database!: " . mysql_error($conn));
-        mysql_select_db(DBNAME, $conn);
+         $conn = mysqli_connect(DBSV, DBUSER, DBPASS, DBNAME);
+         if(mysqli_connect_error()){
+             die("Could not connect to Database!: " . mysqli_error($conn));
+         }
     }
     /*------------------------------------------*
      *  基底クラスのdisp_calenをオーバーロード  *
      *------------------------------------------*/
     function disp_calen() {
 
-        //$nweeks = date("W"); //How many weeks have been past from beginning of the year?
+        // 週の始まり（第何週か？）を表示するための変数：$nweeks
+        // $nweeks = date("W"); //How many weeks have been past from beginning of the year?
 
-        print( "<TABLE BORDER='1' CELLSPACING='1' 
-                 CELLPADDING='2' BORDERCOLORLIGHT='#000080' BORDERCOLORDARK='#3366CC'> \n"); 
-
+        print( "<TABLE BORDER='0' CELLSPACING='1' BORDERCOLORLIGHT='#000080' BORDERCOLORDARK='#3366CC'> \n"); 
         print( "<TR> \n");
         print("<TD align='center' colspan='7' nowrap background='./resources/images/windows-bg.gif'>
-                <FONT color='#FFFFFF' size='-1'>$this->year 年 $this->month 月 $this->day 日&nbsp;から始まる週です
-                </FONT></TD></TR> \n");
-/*
+                <FONT color='#FFFFFF' size='-1'>&nbsp;$this->year 年 $this->month 月 $this->day 日&nbsp;から始まる週です&nbsp;</FONT> \n");
+        print("</TD></TR> \n");
+        // Dummy table row here
+        print("<TR><TD><FONT color='#FFFFFF'>.</FONT></TD></TR> \n");
+        print("</TABLE> \n");
+        /*
+        print( "<TR> \n");
         print("<TD align='center' colspan='7' nowrap background='./resources/images/windows-bg.gif'>
-            <FONT color='#FFFFFF' size='-1'>第&nbsp;$nweeks&nbsp;週&nbsp;
+            <FONT color='#FFFFFF' size='-1'>&nbsp;第&nbsp;$nweeks&nbsp;週&nbsp;
             （$this->year 年 $this->month 月 $this->day 日&nbsp;→）
             </FONT></TD></TR> \n");
-
-*/        
-        print( "</TR> \n");
-
+        print("</TABLE> \n");
+        */
+        print( "<TABLE BORDER='1' CELLSPACING='1' 
+                 CELLPADDING='2' BORDERCOLORLIGHT='#000080' BORDERCOLORDARK='#3366CC'> \n"); 
         print( "<TR> \n");
         for($i = 0; $i <= 6; $i++) {
             $draw_day = getdate(mktime(0,0,0,$this->month,$this->day + $i,$this->year)); 
@@ -80,17 +78,10 @@ class wschd extends wcalender {
      *----------------------------------------*/
     function set_content($dday,$i) {
 
-        //MySQL DB Connect
-        //define("DBSV", "localhost");
-        //define("DBSV", "127.0.0.1");
-        //define("DBNAME", "gschedule");
-        //define("DBUSER", "nao");
-        //define("DBPASS", "naow2696");
-        //define("DBPASS", "naow4583");
-
-        $conn = mysql_connect(DBSV, DBUSER, DBPASS) or 
-            die("Could not connect to Database!: " . mysql_error($conn));
-        mysql_select_db(DBNAME, $conn);
+        $conn = mysqli_connect(DBSV, DBUSER, DBPASS, DBNAME);
+        if(mysqli_connect_error()){
+            die("Could not connect to Database!: " . mysqli_error($conn));
+        }
 
         $year=$dday["year"];
         $month=$dday["mon"];
@@ -99,8 +90,8 @@ class wschd extends wcalender {
         $cond =$year ."/" .$month ."/"  .$day;
         $sql = "SELECT sid, sstime, setime, cont1 FROM schdtb where sdate = '$cond'"
              . " ORDER by sstime";
-        $res = mysql_query($sql, $conn);
-        $nrow = mysql_num_rows($res);  
+        $res = mysqli_query($conn, $sql);
+        $nrow = mysqli_num_rows($res);  
 
         $strRet = "<TD bgcolor='#FFFFFF' valign='top'>";
         $strRet .= "<A href='schdin.php?year=$year&month=$month&day=$day&flag=2'>";
@@ -117,7 +108,7 @@ class wschd extends wcalender {
             return($strRet);
         }
 
-        while ($row = mysql_fetch_assoc($res)) { 
+        while ($row = mysqli_fetch_assoc($res)) { 
             $sid =$row["sid"];
             $sstime = $row["sstime"];
             $setime = $row["setime"];
