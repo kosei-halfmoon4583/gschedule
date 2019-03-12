@@ -1,15 +1,14 @@
 <?php
 session_start();
   /*======================================================================+
-   | PHP version 5.6.30                                                   |
+   | PHP version 7.1.16                                                   |
    +----------------------------------------------------------------------+
-   | Copyright (C) 2002.07.31 N.watanuki                                  |
+   | Copyright (C) 2018.07.25 _.________                                  |
    +----------------------------------------------------------------------+
    | Script-ID      : tododelsub.php                                      |
-   | DATA-WRITTEN   : 2002.07.31                                          |
-   | AUTHER         : N.WATANUKI                                          |
-   | UPDATE-WRITTEN : 2011.04.06                                          |
-   | UPDATE-WRITTEN : 2018.03.18 Upgrade to a newer version.              |
+   | DATA-WRITTEN   : 2018.07.25                                          |
+   | AUTHER         : _.________                                          |
+   | UPDATE-WRITTEN : 2019.03.12                                          |
    +======================================================================*/
     require_once("sschk.php");    
     require_once("db_connect.php");
@@ -22,8 +21,8 @@ session_start();
     $jpname = $_POST["jpname"];
 
     $sql = "select * from todotb where tid = $tid";
-    $res = mysql_query($sql, $conn);
-    $nbrows = mysql_num_rows($res);  
+    $res = mysqli_query($conn, $sql);
+    $nbrows = mysqli_num_rows($res);  
 
     //他のユーザーによりレコードが削除されていた場合
     if($nbrows == 0) {
@@ -49,7 +48,7 @@ session_start();
         print ("</HTML> \n");
         exit;
     }
-    $row = mysql_fetch_assoc($res);
+    $row = mysqli_fetch_assoc($res);
     $pdate = substr($row["tdate"],0,4) ."/" .substr($row["tdate"],5,2) ."/" .substr($row["tdate"],8,2);
     if ((trim($todo) != trim($row["todo"])) 
         or (trim($tdate) != trim($row["tdate"])))   {
@@ -61,17 +60,17 @@ session_start();
     }
     //Delete the target record.
     $sql = "delete from todotb where tid = $tid";
-    $res = mysql_query($sql, $conn);
+    $res = mysqli_query($conn, $sql);
 
-    if(mysql_error($conn)) {
+    if(mysqli_error($conn)) {
         print "レコードの更新に失敗しました！";
-        echo mysql_errno($conn) . ": " . mysql_error($conn) . "\n";
+        echo mysqli_errno($conn) . ": " . mysqli_error($conn) . "\n";
         session_destroy();
         exit;
     } else {
         //正常に更新完了（todo.phpへ戻る）
-        mysql_free_result($result);
-        mysql_close($conn);
+        mysqli_free_result($result);
+        mysqli_close($conn);
         header("Location: todo.php");
     }
 ?>
