@@ -1,14 +1,14 @@
 <?php
 session_start();
   /*======================================================================+
-   | PHP version 5.6.30                                                   |
+   | PHP version 7.1.16                                                   |
    +----------------------------------------------------------------------+
-   | Copyright (C) 2002.07.30 N.watanuki                                  |
+   | Copyright (C) 2018.07.25 _.________                                  |
    +----------------------------------------------------------------------+
    | Script-ID      : tododel.php                                         |
-   | DATA-WRITTEN   : 2002.07.30                                          |
-   | AUTHER         : N.WATANUKI                                          |
-   | UPDATE-WRITTEN : 2018.02.28 Upgrade to a newer version.              |
+   | DATA-WRITTEN   : 2018.07.25                                          |
+   | AUTHER         : _.________                                          |
+   | UPDATE-WRITTEN : 2019.03.12                                          |
    +======================================================================*/
     require_once("sschk.php");  //session check
     require_once("footer.php"); //footer(outer file.)
@@ -20,8 +20,8 @@ session_start();
     $delflg = $sesadmin;
     $sql = "select todotb.*,accounttb.jpname from todotb left join accounttb";
     $sql .= " on todotb.tuserid = accounttb.userid where tid = $tid";
-    $res = mysql_query($sql, $conn);
-    $nbrows = mysql_num_rows($res);  
+    $res = mysqli_query($conn, $sql);
+    $nbrows = mysqli_num_rows($res);  
     
     //他のユーザーによりレコードが削除されていた場合
     if($nbrows == 0) {
@@ -47,7 +47,7 @@ session_start();
         print ("</HTML> \n");
         exit;
     }
-    $row = mysql_fetch_assoc($res);
+    $row = mysqli_fetch_assoc($res);
     //自分が書込んだTodo内容の場合
     if ($sesLoginID == $row["tuserid"]) {
         $delflg = 1;
@@ -61,8 +61,8 @@ session_start();
     $tdate = $row["tdate"];
     $pdate = substr($row["tdate"],0,4) ."/" .substr($row["tdate"],5,2) ."/" .substr($row["tdate"],8,2);
     $jpname = $row["jpname"];
-    mysql_free_result($res);
-    mysql_close($conn);
+    mysqli_free_result($res);
+    mysqli_close($conn);
 ?>
 <HTML>
 <HEAD>
