@@ -1,13 +1,13 @@
 <?php
   /*======================================================================+
-   | PHP version 5.6.30                                                   |
+   | PHP version 7.1.16                                                   |
    +----------------------------------------------------------------------+
-   | Copyright (C) 2011.05.16 N.watanuki                                  |
+   | Copyright (C) 2018.07.25 _.________                                  |
    +----------------------------------------------------------------------+
    | Script-ID      : schddb.php                                          |
-   | DATA-WRITTEN   : 2011.05.16                                          |
-   | AUTHER         : N.WATANUKI                                          |
-   | UPDATE-WRITTEN : 2018.03.08 Upgrade to a newer version.              |
+   | DATA-WRITTEN   : 2018.07.25                                          |
+   | AUTHER         : _.________                                          |
+   | UPDATE-WRITTEN : 2019.03.12                                          |
    +======================================================================*/
     require_once("db_connect.php");
 
@@ -39,8 +39,8 @@ switch($task){
 function getList() {
 
     $query = "SELECT schdid, schd, surl, susr, semail, sdate, sremark FROM schdtitletb";
-    $result = mysql_query($query);
-    $nbrows = mysql_num_rows($result);  
+    $result = mysqli_query($conn, $query);
+    $nbrows = mysqli_num_rows($result);  
 
 /* [ Quick Search.] Here we check if we have a query parameter : */
     if (isset($_POST['query'])) {
@@ -52,10 +52,10 @@ function getList() {
     $start = (integer) (isset($_POST['start']) ? $_POST['start'] : $_GET['start']);
     $end = (integer) (isset($_POST['limit']) ? $_POST['limit'] : $_GET['limit']);
     $limit = $query." ORDER by schdid LIMIT ".$start.",".$end; 
-    $result = mysql_query($limit);  
+    $result = mysqli_query($conn, $limit);  
 
     if($nbrows > 0){
-        while($rec = mysql_fetch_array($result)){
+        while($rec = mysqli_fetch_array($result)){
             $arr[] = $rec;
         }
         $jsonresult = JEncode($arr);
@@ -83,7 +83,7 @@ function updateKword() {
              sdate =  '$sdate', 
              sremark = '$sremark' 
         WHERE schdid = $schdid";
-    $result = mysql_query($query);
+    $result = mysqli_query($conn, $query);
     echo '1';
 }
 
@@ -104,7 +104,7 @@ function createKword(){
             sdate ,
             sremark ) 
          VALUES ('$schd', '$surl', '$susr', '$semail', '$sdate', '$sremark')";
-    $result = mysql_query($query);
+    $result = mysqli_query($conn, $query);
     echo '1';
 }
 
@@ -124,7 +124,7 @@ function deleteKword() {
         echo '0';
     } else if (sizeof($idpres) == 1) {
         $query = "DELETE FROM schdtitletb WHERE schdid = '" ."$idpres[0]'";
-        mysql_query($query);
+        mysqli_query($conn, $query);
     } else {
         $query = "DELETE FROM schdtitletb WHERE ";
         for($i = 0; $i < sizeof($idpres); $i++) {
@@ -133,7 +133,7 @@ function deleteKword() {
                 $query = $query . " OR ";
             } 
         }
-        mysql_query($query);
+        mysqli_query($conn, $query);
     }
     //This helps me find out what the heck is going on in Firebug...
     //echo $query;  
@@ -170,16 +170,16 @@ function searchKword() {
         $query .= " AND sremark = '".$sremark."'";
     };
     
-    $result = mysql_query($query);
-    $nbrows = mysql_num_rows($result);  
+    $result = mysqli_query($conn, $query);
+    $nbrows = mysqli_num_rows($result);  
 
     $start = (integer) (isset($_POST['start']) ? $_POST['start'] : $_GET['start']);
     $end = (integer) (isset($_POST['limit']) ? $_POST['limit'] : $_GET['limit']);
     $limit = $query." LIMIT ".$start.",".$end;      
-    $result = mysql_query($limit);    
+    $result = mysqli_query($conn, $limit);    
 
     if($nbrows>0){
-        while($rec = mysql_fetch_array($result)){
+        while($rec = mysqli_fetch_array($result)){
             // render the right date format
             $rec['tookoffice']=codeDate($rec['tookoffice']);
             $rec['leftoffice']=codeDate($rec['leftoffice']);      
