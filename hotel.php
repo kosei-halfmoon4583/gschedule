@@ -2,11 +2,11 @@
   /*==========================================================================+
    | PHP version 7.1.16                                                       |
    +--------------------------------------------------------------------------+
-   | Copyright (C) 2019.03.02 N.watanuki.                                     |
+   | Copyright (C) 2018.07.25 _.________                                      |
    +--------------------------------------------------------------------------+
    | Hotel Search Script                                                      |
    | Script-ID      : hotel.php                                               |
-   | DATA-WRITTEN   : 2019.03.02                                              |
+   | DATA-WRITTEN   : 2018.07.25                                              |
    | AUTHER         : _.________                                              |
    | UPDATE-WRITTEN : ____.__.__                                              |
    +==========================================================================*/
@@ -16,8 +16,8 @@
     $wdate = date("Y-m-d");
     $header_title = "[ ホテル検索 ]";
 ?>
-<!DOCTYPE html>
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta http-equiv="Content-Style-Type" content="text/css" />
@@ -80,7 +80,7 @@
 <div id = "hotel"></div>
 <div id = "msg1"> 
     Schedule Management System Version 2.2.4 
-    Copyright(C.) 2018  <font color="#FF5500"><a href="mailto:kosei.halfmoon@gmail.com"><u>Naoshi WATANUKI.</u></a></font>
+    Copyright(C.) 2019  <font color="#FF5500"><a href="mailto:kosei.halfmoon@gmail.com"><u>Naoshi WATANUKI.</u></a></font>
 </div>
 
 <script type = "text/javascript">
@@ -89,6 +89,7 @@
     var treeDivId = "treeDiv1";
     //var mapDivId  = "map";
     var areaURL   = "http://localhost/gschedule/area-013000.xml";
+    // var iniLatLng = [38.16911413556086, 138.33984375];
     var iniLatLng = [39.16911413556086, 136.33984375];
     var centerY,centerX,zm,nowarea;
 
@@ -96,7 +97,7 @@
     var test1;
     var div1;
     var h_Oj=[];
-    /*
+/*
     var hotelsOj=function (){}
         hotelsOj.prototype.h_name = "";
         hotelsOj.prototype.h_id = "";
@@ -107,19 +108,19 @@
         hotelsOj.prototype.h_ph = "";
         hotelsOj.prototype.h_catch = "";
         hotelsOj.prototype.h_url = "";
-    */
+*/
     var hotelsOj=function (){
-        hotelsOj.prototype.h_name = "";     // Hotel Name
-        hotelsOj.prototype.h_id = "";       // Hotel ID
-        hotelsOj.prototype.h_x = "";        // Hotel x-Axis
-        hotelsOj.prototype.h_y = "";        // Hotel y-Axis
-        hotelsOj.prototype.h_la = "";       // Large Area
-        hotelsOj.prototype.h_sa = "";       // Small Area
-        hotelsOj.prototype.h_ph = "";       // Hotel Photo
-        hotelsOj.prototype.h_catch = "";    // Hotel Overview
-        hotelsOj.prototype.h_url = "";      // Hotel URL
+        hotelsOj.prototype.h_name = "";
+        hotelsOj.prototype.h_id = "";
+        hotelsOj.prototype.h_x = "";
+        hotelsOj.prototype.h_y = "";
+        hotelsOj.prototype.h_la = "";
+        hotelsOj.prototype.h_sa = "";
+        hotelsOj.prototype.h_ph = "";
+        hotelsOj.prototype.h_catch = "";
+        hotelsOj.prototype.h_url = "";
     }
-         
+ 
     /* Hotel Object create */
     function mk_hotelsOj(h_id,hotelDom){
 
@@ -130,11 +131,10 @@
         tmp_h_Oj[h_id].h_y     = getHv('Y',hotelDom);         // 緯度 Latitude.
         tmp_h_Oj[h_id].h_la    = getHv('LargeArea',hotelDom); // 大エリア
         tmp_h_Oj[h_id].h_sa    = getHv('SmallArea',hotelDom); // 小エリア
-        if(hotelDom.getElementsByTagName('PictureURL')[0].firstChild!=null) {
-            tmp_h_Oj[h_id].h_ph  = getHv('PictureURL',hotelDom);
-        } else {  
-            tmp_h_Oj[h_id].h_ph  = "./resources/images/kouzi2_i.gif";
-        }
+        if(hotelDom.getElementsByTagName('PictureURL')[0].firstChild!=null)
+              tmp_h_Oj[h_id].h_ph  = getHv('PictureURL',hotelDom);
+        else  tmp_h_Oj[h_id].h_ph  = "./resources/images/kouzi2_i.gif";
+
         //for debug 2019/2/21 remove comments below ..
         // wkOj.preLoad(h_id); 
         // wkOj.hotelImg[h_id].src;
@@ -150,16 +150,47 @@
         return dom.getElementsByTagName(nodeName)[0].firstChild.nodeValue;
     }
 
+  /* tmp_msg: Map上に、HOTELのInfoWindow表示する */
+  function tmp_msg(h_id){  
+      var img = '<img src="'+wkOj.hotelImg[h_id].src+'" '
+              + ' style="height:'+wkOj.hotelImgHeight[h_id]+'px;margin:0px;padding:0px;padding-right:12px;border:0px;" align="left" />';
+      var catchCopy = ""+h_Oj[h_id].h_catch+"";
+      var hotelURL ='<br />| <a href="'+h_Oj[h_id].h_url+'" target="hotel">ホテル詳細</a> |';
+      var imgzm =' <a href="javascript:wkOj.chgHotelImgHeight('+h_id+',180);">画像拡大</a> |';
+      var reset =' <a href="javascript:wkOj.chgHotelImgHeight('+h_id+',60);">画像サイズ戻す</a> |';
+      var htm ='<div style="width:210px">'
+              + '<div style="font-weight:900">'
+              + '<nobr>'
+              + h_Oj[h_id].h_name
+              + '</nobr>'
+              + (($('imgFlg').checked)?img:'')
+              + '<div style="font-weight:100">'
+              + (($('imgFlg').checked&&wkOj.hotelImgHeight[h_id]>60)?'<br clear="all" />':'')
+              + ((h_Oj[h_id].h_catch)?catchCopy:'')
+              + '<br clear="all" />'
+              + '<b>経度 : </b>'+ (""+h_Oj[h_id].h_x).substr(0,8) + ' '
+              + '<b>緯度 : </b>'+ (""+h_Oj[h_id].h_y).substr(0,8) + ' '
+              + hotelURL
+              + (($('imgFlg').checked&&wkOj.hotelImgHeight[h_id]>60)?reset:imgzm)
+              + '</div>'
+              + '<br>'
+              + '</div>'
+              + '</div>';
+       return htm
+  }
+
+/*
   function tmp_msg(h_id){  
       var img = '<img src="'+wkOj.hotelImg[h_id].src+'" '
               + ' style="height:'+wkOj.hotelImgHeight[h_id]+'px;margin:0px;padding:0px;padding-right:12px;border:0px;" align="left" />';
       var catchCopy = ""+h_Oj[h_id].h_catch+"";
       var hotelURL ='<br />| <a href="'+h_Oj[h_id].h_url+'" target="hotel">詳細ページ</a> |';
-      var imgzm =' <a href="javascript:wkOj.chgHotelImgHeight('+ h_id +',180);">画像拡大</a> |';
-      var reset =' <a href="javascript:wkOj.chgHotelImgHeight('+ h_id +',60);">画像サイズ戻す</a> |';
+      var imgzm =' <a href="javascript:wkOj.chgHotelImgHeight('+h_id+',180);">画像拡大</a> |';
+      var reset =' <a href="javascript:wkOj.chgHotelImgHeight('+h_id+',60);">画像サイズ戻す</a> |';
       var htm ='<div style="width:210px">'
-              + '<div style="font-weight:900">'
-              + '<nobr>' + h_Oj[h_id].h_name + '</nobr>'
+              + '<div style="font-weight:900"><nobr>'
+              +  h_Oj[h_id].h_name
+              +  '</nobr>'
               + (($('imgFlg').checked)?img:'')
               + '<div style="font-weight:100">'
               + (($('imgFlg').checked&&wkOj.hotelImgHeight[h_id]>60)?'<br  clear="all" />':'')
@@ -175,12 +206,13 @@
               + '</div>';
        return htm
   }
-  
+*/
+
   function tmp_link(h_id){ 
       var msg = '【'+h_Oj[h_id].h_la+'】'+h_Oj[h_id].h_sa+'<br />';
-                   //msg=msg.split('"').join("\\'");
+        //msg=msg.split('"').join("\\'");
       var contents = msg + tmp_msg(h_id).split('"').join("\\'");
-      var href  = "javascript:wkOj.openInfoWinByClick('"+ h_id +"',\'"+msg + tmp_msg(h_id).split('"').join("\\'")+"\',"+2+")";
+      var href  = "javascript:wkOj.openInfoWinByClick('"+h_id+"',\'"+msg + tmp_msg(h_id).split('"').join("\\'")+"\',"+2+")";
       var mover = "javascript:wkOj.openInfoWinByMover('" + h_id + "',\'" + contents + "\')";
       return '' 
             + '【'+h_Oj[h_id].h_la+'】'
@@ -264,14 +296,13 @@
   function on_loadedHotelXML(oj){ put2Map(oj) }
 
   function put2Map(oj){
-      var xml = oj.responseXML;
-          window.status += "*";
+      var xml=oj.responseXML;
+          window.status+="*";
       var hotels = xml.getElementsByTagName('Hotel');
-          hotel_links = ''; 
-          zm = 17;
+          hotel_links = '' ; zm =17;
 
       var mimpoint_x,minpoint_y,maxpoint_x,maxpoint_y;
-      for(var i=0; i<hotels.length; i++){
+      for(var i=0;i<hotels.length;i++){
 
           window.status+="|";
 
@@ -279,8 +310,8 @@
           var  h_id  = hotels[i].getElementsByTagName('HotelID')[0].firstChild.nodeValue;
           h_Oj[h_id] = mk_hotelsOj(h_id,hotels[i]);
 
-          h_Oj[h_id].h_x = chgUnit(h_Oj[h_id].h_x);
-          h_Oj[h_id].h_y = chgUnit(h_Oj[h_id].h_y);
+          h_Oj[h_id].h_x=chgUnit(h_Oj[h_id].h_x);
+          h_Oj[h_id].h_y=chgUnit(h_Oj[h_id].h_y);
 
           mimpoint_x = (mimpoint_x)?(Math.min(mimpoint_x,h_Oj[h_id].h_x)):h_Oj[h_id].h_x;
           minpoint_y = (minpoint_y)?(Math.min(minpoint_y,h_Oj[h_id].h_y)):h_Oj[h_id].h_y;
@@ -290,14 +321,14 @@
 
           wkOj.preLoad(h_id);
           wkOj.setHotelImgHeight(h_id,60);
-          var msg = '';
+          var msg  = '';
           tmp_msg(h_id);
           hotel_links += tmp_link(h_id);
           wkOj.setMarkerToMap(h_id);
       }
 
-      var minpoint = new GLatLng_tky( minpoint_y,mimpoint_x);
-      var maxpoint = new GLatLng_tky( maxpoint_y,maxpoint_x);
+      var minpoint = new GLatLng_tky(minpoint_y,mimpoint_x);
+      var maxpoint = new GLatLng_tky(maxpoint_y,maxpoint_x);
       var bounds = new google.maps.LatLngBounds(minpoint,maxpoint);
       map.fitBounds(bounds);
 
@@ -316,6 +347,7 @@
 
     }
     YAHOO.tato.treeIni();
+
 
     function loadFile(url, callbackFunc) {
 
@@ -348,7 +380,7 @@
 
 
     function on_loadedJSON(oj) {
-        var res  =  oj.responseText;
+        var res = oj.responseText;
         eval("res ="+res);
         wkOj = new wksByData(res,$(treeDivId));
         wkOj.addTrees();
@@ -365,19 +397,20 @@
         if(areaXML2areaJSON)return areaXML2areaJSON(oj);
     }
 
-    function wksByData(jsonData,oj){
+    function wksByData(jsonData,oj) {
   
         return {
             hotelMarkers : [],
             hotelImg : [],
             hotelImgHeight : [],
             addTrees : function(){test1.mkTreeByArray(jsonData); },
-            showToMap : function(lon,lat,msg){
+            showToMap : function(lon,lat,msg) {
 
-                // map.setCenter(new GLatLng(lat,lon), 17);
-                // map.setCenter(new google.maps.LatLng(lat,lon), 17);
-                // map.openInfoWindowHtml(map.getCenter(),msg);
-
+            /*  For Debug 2019/3/8 Comment remove below .. ----------- */   
+                map.setCenter(new GLatLng(lat,lon), 17);
+                map.setCenter(new google.maps.LatLng(lat,lon), 17);
+                map.openInfoWindowHtml(map.getCenter(),msg);
+            /* ------------------------------------------------------- */
                 google.maps.InfoWindow({content: msg});
             },
       
@@ -388,93 +421,95 @@
                 position: myLatlng,
             });
             gmarker.setMap(map);
-    },
+        },
       
-    openInfoWinByClick : function(h_id,msg,zm){
-        var point  = new GPoint_tky(h_Oj[h_id].h_x,h_Oj[h_id].h_y);
-        var myLatlng = new google.maps.LatLng(point.y,point.x);
-        var iwopts = {
-            content: msg,
-            position: myLatlng
-        };
+        openInfoWinByClick : function(h_id,msg,zm) {
+            var point  = new GPoint_tky(h_Oj[h_id].h_x,h_Oj[h_id].h_y);
+            var myLatlng = new google.maps.LatLng(point.y,point.x);
+            var iwopts = {
+                content: msg,
+                position: myLatlng
+            };
 
-        var infoWindow = new google.maps.InfoWindow(iwopts);
+            var infoWindow = new google.maps.InfoWindow(iwopts);
 
-        infoWindow.open(map);
+            infoWindow.open(map);
 
-        if(zm) map.setZoom(map.getZoom() + zm);
-    },
+            if(zm) map.setZoom(map.getZoom() + zm);
+        },
       
-      openInfoWinByMover : function(h_id,msg){
+        openInfoWinByMover : function(h_id,msg){
                                
-        var point  = new GPoint_tky(h_Oj[h_id].h_x,h_Oj[h_id].h_y);
-        var myLatlng = new google.maps.LatLng(point.y,point.x);
-        var iwopts = {
-            content: msg,
-            position: myLatlng
-        };
+            var point  = new GPoint_tky(h_Oj[h_id].h_x,h_Oj[h_id].h_y);
+            var myLatlng = new google.maps.LatLng(point.y,point.x);
+            var iwopts = {
+                content: msg,
+                position: myLatlng
+            };
 
-        var infoWindow = new google.maps.InfoWindow(iwopts);
+            var infoWindow = new google.maps.InfoWindow(iwopts);
 
-        infoWindow.open(map);
-      },
+                infoWindow.open(map);
+            },
       
-      preLoad : function(h_id){
-          if($('imgFlg').checked){
-              this.hotelImg[h_id] = new Image();
-              this.hotelImg[h_id].src = h_Oj[h_id].h_ph;
-          } else {
-              this.hotelImg[h_id] = '';
-          }
-      },
+        preLoad : function(h_id){
+            if($('imgFlg').checked){
+                this.hotelImg[h_id] = new Image();
+                this.hotelImg[h_id].src = h_Oj[h_id].h_ph;
+            } else {
+                this.hotelImg[h_id] = '';
+            }
+        },
       
-      chgHotelImgHeight:function(h_id,height){
-          if(height)this.setHotelImgHeight(h_id,height);
-          var msg = tmp_msg(h_id);
-          var point = new GPoint_tky(h_Oj[h_id].h_x,h_Oj[h_id].h_y);
-          var myLatlng = new google.maps.LatLng(point.y,point.x);
-          var iwopts = {
-              content: msg,
-              position: myLatlng
-          };
+        chgHotelImgHeight:function(h_id,height){
+            if(height)this.setHotelImgHeight(h_id,height);
+            var msg = tmp_msg(h_id);
+            var point = new GPoint_tky(h_Oj[h_id].h_x,h_Oj[h_id].h_y);
+            var myLatlng = new google.maps.LatLng(point.y,point.x);
+            var iwopts = {
+                content: msg,
+                position: myLatlng
+            };
 
-          var infoWindow = new google.maps.InfoWindow(iwopts);
+            var infoWindow = new google.maps.InfoWindow(iwopts);
 
-          infoWindow.open(map);
-      },
+            infoWindow.open(map);
+        },
 
-      setHotelImgHeight:function(h_id,height){
-          this.hotelImgHeight[h_id]=height;
-      },
+        setHotelImgHeight:function(h_id,height){
+            this.hotelImgHeight[h_id]=height;
+        },
       
-      reZoom : function (bounds){
-          var nowBnd = map.getBounds();
-          map.setCenter(new GLatLng_tky(centerY,centerX),zm);
-          zm = map.getZoom();
+        reZoom : function (bounds) {
+            var nowBnd = map.getBounds();
+            map.setCenter(new GLatLng_tky(centerY,centerX),zm);
+            zm = map.getZoom();
 
-          var minY = nowBnd.getSouthWest().lat();
-          var minX = nowBnd.getSouthWest().lng();
-          var maxY = nowBnd.getNorthEast().lat();
-          var maxX = nowBnd.getNorthEast().lng();
-          alert( minX +":"+ bounds.minX +"="+(minX-bounds.minX)+(minX < bounds.minX)+"\n"
-              + minY +":"+ bounds.minY +"="+(minY-bounds.minY)+(minY < bounds.minY)+"\n"
-              + maxX +":"+ bounds.maxX +"="+(maxX-bounds.maxX)+(maxX > bounds.maxX)+"\n"
-              + maxY +":"+ bounds.maxY +"="+(maxY-bounds.maxY)+(maxY > bounds.maxY))
+            var minY = nowBnd.getSouthWest().lat();
+            var minX = nowBnd.getSouthWest().lng();
+            var maxY = nowBnd.getNorthEast().lat();
+            var maxX = nowBnd.getNorthEast().lng();
+ 
+            alert( minX +":"+ bounds.minX +"="+(minX-bounds.minX)+(minX < bounds.minX)+"\n"
+                + minY +":"+ bounds.minY +"="+(minY-bounds.minY)+(minY < bounds.minY)+"\n"
+                + maxX +":"+ bounds.maxX +"="+(maxX-bounds.maxX)+(maxX > bounds.maxX)+"\n"
+                + maxY +":"+ bounds.maxY +"="+(maxY-bounds.maxY)+(maxY > bounds.maxY))
            
-          var inn = (
-              minX < bounds.minX &&
-              minY < bounds.minY &&
-              maxX > bounds.maxX &&
-              maxY > bounds.maxY )
+            var inn = (
+                minX < bounds.minX &&
+                minY < bounds.minY &&
+                maxX > bounds.maxX &&
+                maxY > bounds.maxY 
+            )
           
-          if(inn||zm<5){
-              map.setCenter(new GLatLng_tky(centerY,centerX),zm);
-          } else {
-             window.status+="||";
-             map.setZoom(zm--);
-             this.reZoom(bounds);
-          }
-       }
+            if(inn||zm<5)   {
+                map.setCenter(new GLatLng_tky(centerY,centerX),zm);
+            } else {
+                window.status+="||";
+                map.setZoom(zm--);
+                this.reZoom(bounds);
+            }
+        }
      }
   }
 
@@ -518,7 +553,7 @@
   
   function show_fade(oj) {
       window.status+="|";
-      div1.moveTo(120,100);
+      div1.moveTo(120,300);
       div1.innerHTML='<img src="./resources/images/loading.gif">';
       div1.style.backgroundColor ="#FFFFFF";
       div1.style.border = "2px outset #333366";
@@ -529,17 +564,16 @@
           +'<a href="javascript:hide_fade()" style="text-decoration:none">'
           +'<span style="color:#000066;font-size:12px;font-weight:900">[Clear]</span>'
           +'</a>'
-          +'<span style="color:#000066;font-size:12px;font-weight:900">'
-          +'この地域のホテル情報です！'
-          +'</span>'
-          +'<font color="#333366">'
+          +'<span style="color:#072B74;font-size:12px;font-weight:900">この地域のホテル情報です！</span>'
+          +'<font color="#000066">'
           + '[<a href="javascript:map.setZoom(map.getZoom() + 1);">+</a>]'
           + '[<a href="javascript:map.setZoom(map.getZoom() - 1);">-</a>]'
           + '[<a href="javascript:map.setMapTypeId(google.maps.MapTypeId.SATELLITE)">衛星</a>]'
           + '[<a href="javascript:map.setMapTypeId(google.maps.MapTypeId.ROADMAP)">地図</a>]'
           +'</font>'
-          +'<span style="color:#000066;font-size:12px;font-weight:900">&nbsp;[*このペインはドラッグできます]</span>'
           +'<br />'
+          +'*このペインはドラッグできます' 
+          +'<br />';
            
       window.status+="|";
        
@@ -548,6 +582,46 @@
       indi.indi_stop();
       window.status="";
   }
+
+/* For Debug 2019/3/8 
+  function show_fade(oj) {
+      window.status+="|";
+      div1.moveTo(120,300);
+      div1.innerHTML='<img src="./resources/images/loading.gif">';
+      // div1.style.backgroundColor ="#B2D6FF";
+      div1.style.backgroundColor ="#FFFFFF";
+      div1.style.border = "2px outset #333366";
+      div1.style.padding ="18px";
+      div1.style.paddingTop ="8px";
+      div1.style.display="block";
+      var bar=''
+          +'<a href="javascript:hide_fade()" style="text-decoration:none">'
+          +'<span  style="color:#000066;font-size:12px;font-weight:900">'
+          +'[Clear] '
+          +'</span>'
+          +'</a>'
+          +'<span  style="color:#000066;font-size:12px;font-weight:900">'
+          +'この地域のホテル情報です！'
+          +'</span>'
+          +'<font color="#000066">'
+              + '[<a href="javascript:map.setZoom(map.getZoom() + 1);">+</a>]'
+              + '[<a href="javascript:map.setZoom(map.getZoom() - 1);">-</a>]'
+              + '[<a href="javascript:map.setMapTypeId(google.maps.MapTypeId.SATELLITE)">衛星</a>]'
+              + '[<a href="javascript:map.setMapTypeId(google.maps.MapTypeId.ROADMAP)">地図</a>]'
+              +'</font>'
+              +'<br />'
+              +'*このペインはドラッグできます' 
+              +'<br />';
+           
+      window.status+="|";
+       
+      div1.innerHTML=bar+oj.data+'<br />'+'<span style="position:absolute;right:8px;color:#000066;font-size:11px">It is Drag able DIV Tag.</span>'; 
+      fadeOpacity('output',1,0.8);
+      indi.indi_stop();
+      window.status="";
+  }
+*/
+
   function hide_fade() {
       fadeOpacity('output',0.8,0);
   }
