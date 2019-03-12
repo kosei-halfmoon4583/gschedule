@@ -1,15 +1,14 @@
 <?php
 session_start();
   /*======================================================================+
-   | PHP version 5.6.30                                                   |
+   | PHP version 7.1.16                                                   |
    +----------------------------------------------------------------------+
-   | Copyright (C) 2002.07.28 N.watanuki                                  |
+   | Copyright (C) 2018.07.25 _.________                                  |
    +----------------------------------------------------------------------+
    | Script-ID      : schddelsub.php                                      |
-   | DATA-WRITTEN   : 2002.07.28                                          |
-   | AUTHER         : N.WATANUKI                                          |
-   | UPDATE-WRITTEN : 2011.04.07                                          |
-   | UPDATE-WRITTEN : 2018.03.08 Upgrade to a newer version.              |
+   | DATA-WRITTEN   : 2018.07.25                                          |
+   | AUTHER         : _.________                                          |
+   | UPDATE-WRITTEN : 2019.03.12                                          |
    +======================================================================*/
     require_once("sschk.php"); 
     require_once("db_connect.php");
@@ -29,8 +28,8 @@ session_start();
     $cont2 = $_POST["cont2"];
      
     $sql = "SELECT * FROM schdtb WHERE sid = $sid";
-    $res = mysql_query($sql, $conn);
-    $nrow = mysql_num_rows($res);  
+    $res = mysqli_query($conn, $sql);
+    $nrow = mysqli_num_rows($res);  
 
     //他ユーザーによりレコードが削除されていた場合
     if($nrow == 0){
@@ -57,7 +56,7 @@ session_start();
         exit;
     }
 
-    $row = mysql_fetch_assoc($res);
+    $row = mysqli_fetch_assoc($res);
     $pdate = substr($row["sdate"],0,4) ."/" .substr($row["sdate"],5,2) ."/" .substr($row["sdate"],8,2);
     if ((trim($sdate) != trim($row["sdate"])) 
         or (trim($sstime) != trim($row["sstime"]))
@@ -75,16 +74,16 @@ session_start();
     }
     //対象レコード削除
     $sql = "delete from schdtb where sid = $sid";
-    $res = mysql_query($sql, $conn);
-    if(mysql_error($conn)) {
+    $res = mysqli_query($conn, $sql);
+    if(mysqli_error($conn)) {
         print "レコード削除に失敗しました！";
-        echo mysql_errno($conn) . ": " . mysql_error($conn) . "\n";
+        echo mysqli_errno($conn) . ": " . mysqli_error($conn) . "\n";
         session_destroy();
         exit;
     } else {
         //正常に削除完了（schd.phpへ戻る）
-        mysql_free_result($res);
-        mysql_close($conn);
+        mysqli_free_result($res);
+        mysqli_close($conn);
         header("Location: schd.php?year=$year&month=$month&day=$day");
     }
 ?>
