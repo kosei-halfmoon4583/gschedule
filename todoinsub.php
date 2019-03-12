@@ -1,15 +1,14 @@
 <?php
 session_start();
   /*======================================================================+
-   | PHP version 5.6.30                                                   |
+   | PHP version 7.1.16                                                   |
    +----------------------------------------------------------------------+
-   | Copyright (C) 2002.08.01 N.watanuki                                  |
+   | Copyright (C) 2018.07.25 _.________                                  |
    +----------------------------------------------------------------------+
    | Script-ID      : todoinsub.php                                       |
-   | DATA-WRITTEN   : 2002.08.01                                          |
-   | AUTHER         : N.WATANUKI                                          |
-   | UPDATE-WRITTEN : 2011.04.06                                          |
-   | UPDATE-WRITTEN : 2018.03.18 Upgrade to a newer version.              |
+   | DATA-WRITTEN   : 2018.07.25                                          |
+   | AUTHER         : _.________                                          |
+   | UPDATE-WRITTEN : 2019.03.12                                          |
    +======================================================================*/
     require_once("sschk.php");      
     require_once("db_connect.php"); //DB Connect.
@@ -37,8 +36,8 @@ session_start();
     $updflg = $sesadmin;
     if (isset($stid)) { // Update
         $sql = "select * from todotb where tid = $stid";
-        $res = mysql_query($sql, $conn);
-        $nbrows = mysql_num_rows($res);  
+        $res = mysqli_query($conn, $sql);
+        $nbrows = mysqli_num_rows($res);  
 
         // 他のユーザーにレコードが削除されていた場合
         if($nbrows == 0) {
@@ -64,11 +63,11 @@ session_start();
             print ("</HTML> \n");
             exit;
         }
-        $row = mysql_fetch_assoc($res);
+        $row = mysqli_fetch_assoc($res);
         if ($sesLoginID == $row["tuserid"]) {
             $updflg = 1;        //自分が書込んだTodo内容の場合
         }
-        mysql_free_result($res);
+        mysqli_free_result($res);
         if ($updflg != 1) {
             print ("<font color = red>変更できません。</font><br>"); 
             print ("<a href=todo.php>戻る</a>");    
@@ -117,21 +116,21 @@ session_start();
     if (!isset($_SESSION["stid"])) {
         $sql = "insert into todotb(tdate,todo,tuserid)"; 
         $sql .= " values('$tdate','$todo','$sesLoginID')";
-        $res = mysql_query($sql, $conn);
+        $res = mysqli_query($conn, $sql);
     } else {
         $stid = $_SESSION["stid"];
         $pdate = substr($oldtodo[0],0,4) ."/" .substr($oldtodo[0],5,2) ."/" .substr($oldtodo[0],8,2);
         $sql = "update todotb set tdate='$tdate' ,todo='$todo' "; 
         $sql .= " where tid=" . $stid;
-        $res = mysql_query($sql, $conn);
+        $res = mysqli_query($conn, $sql);
     }
 
-    if(mysql_error($conn)) {
+    if(mysqli_error($conn)) {
         print "レコードの更新に失敗しました！";
-        echo mysql_errno($conn) . ": " . mysql_error($conn) . "\n";
+        echo mysqli_errno($conn) . ": " . mysqli_error($conn) . "\n";
         session_destroy();
-        mysql_free_result($result);
-        mysql_close($conn);
+        mysqli_free_result($result);
+        mysqli_close($conn);
         exit;
     } else {
     /* 正常に更新完了todo.phpへ戻る */
@@ -143,18 +142,18 @@ session_start();
      * 含まれている場合に、画面の遷移先を変える。              *
      *=========================================================*/
     $query = "SELECT kid, kwd, kurl, kusr, kemail, kdate, kcont FROM kwordtb";
-    $result = mysql_query($query, $conn);
-    $nbrows = mysql_num_rows($result);  
+    $result = mysqli_query($conn, $query);
+    $nbrows = mysqli_num_rows($result);  
 
     // 結果チェック(Error Check)
     if(!$result) {
-        $message  = 'Invalid query: ' . mysql_error() . "\n";
+        $message  = 'Invalid query: ' . mysqli_error() . "\n";
         $message .= 'Whole query: ' . $query;
         die($message);
     }
 
     for ($i = 1; $i <= $nbrows; $i++) {
-        $row = mysql_fetch_assoc($result);
+        $row = mysqli_fetch_assoc($result);
         $keywd = $row['kwd'];
         $turl = $row['kurl'];
 
