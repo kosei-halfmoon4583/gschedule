@@ -1,7 +1,7 @@
-/*=========================================================*
- * Copyright (C) 2006 Naoshi.WATANUKI All Rights Reserved. *
- * http://kosei-halfmoon.blogdns.net/gs/                   * 
- *=========================================================*/
+/*========================================================= *
+ * Copyright (C) 2019 Naoshi.WATANUKI  All Rights Reserved. *
+ * http://kosei-halfmoon.dyndns-ip.com/gshcesule/           * 
+ *========================================================= */
 
 body {
     margin: 5px 4px 5px 4px;
@@ -14,7 +14,7 @@ body {
     width: 980px;
     height:36px;
     float: left;
-/*  background-image: url("../../resources/images/panel-title-bg.gif"); */
+    /* background-image: url("../../resources/images/panel-title-bg.gif"); */
 }
 
 #content {
@@ -31,7 +31,7 @@ body {
 }
 
 #menu-ad {
-    margin: 14px;
+    margin: 30px 10px 10px 26px;
     padding: 2px 0px 0px 4px;
     border: 1px solid #224782;
     border-top-color: #224782;
@@ -56,7 +56,7 @@ body {
 }
 
 #main { /* 3段組みレイアウト用 */
-    width: 552px;
+    width: 600px;
     float: left;
 }
 
@@ -72,35 +72,35 @@ body {
     float: left;
 }
 
-#footer {
-    position:absolute; 
-    right:16px;
-    width:360px;
-    bottom:4px;
-    font-size:11.5px;
-}
-
 #footer-center {
     position:absolute;
-    left:220px;
+    left:320px;
     width:360px;
-    bottom:4px;
+    bottom:8px;
     font-size:11.5px;
 }
 
 #line-top {
     position:absolute;
     top:32px;
-    left:14px;
+    left:20px;
     width:980px;
 }
 
+#line-sub {
+    position:absolute;
+    top:33px;
+    left:24px;
+    width:1100px;
+}
+ 
 #line-under {
     position:absolute; 
     left:14px;
     bottom:54px;
     width:980px;
 }
+
 a {
     text-decoration: none; 
     fint-size: 12px; 
@@ -165,8 +165,7 @@ li a:hover {
     margin-left: auto;
     text-align: center;
     padding: 0px;
-    /* width: 780px; */
-    width: 820px;
+    width: 780px; 
     background-color: #FFFFFF;
     border-right: double 4px #285FFF;
     border-left: double 4px #285FFF;
@@ -216,12 +215,6 @@ li a:hover {
     border-left: solid 1px #285FFF;
     border-bottom: solid 1px #285FFF;
     background-color: #E8EDFB;
-}
-
-#center600 {
-    float: left;
-    width: 600px;
-    overflow: hidden;
 }
 
 .content {
