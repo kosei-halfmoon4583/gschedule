@@ -1,14 +1,14 @@
 <?php
 session_start();
   /*======================================================================+
-   | PHP version 5.6.30                                                   |
+   | PHP version 7.1.16                                                   |
    +----------------------------------------------------------------------+
-   | Copyright (C) 2011.05.16 NAOSHI.watanuki                             |
+   | Copyright (C) 2018.07.25 _._________                                 |
    +----------------------------------------------------------------------+
    | Script-ID      : schdEntry.php                                       |
-   | DATA-WRITTEN   : 2011.05.16                                          |
-   | AUTHER         : N.WATANUKI                                          |
-   | UPDATE-WRITTEN : 2018.03.08 Upgrade to a newer version.              |
+   | DATA-WRITTEN   : 2018.07.25                                          |
+   | AUTHER         : _.________                                          |
+   | UPDATE-WRITTEN : 2019.03.12                                          |
    +======================================================================*/
     require_once("sschk.php");    
     require_once("footer.php"); //footer(outer file.)
