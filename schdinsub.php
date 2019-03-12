@@ -1,15 +1,14 @@
 <?php
 session_start();
   /*======================================================================+
-   | PHP version 5.6.30                                                   |
+   | PHP version 7.1.16                                                   |
    +----------------------------------------------------------------------+
-   | Copyright (C) 2002.07.29 N.watanuki                                  |
+   | Copyright (C) 2018.07.25 _.________                                  |
    +----------------------------------------------------------------------+
    | Script-ID      : schdinsub.php                                       |
-   | DATA-WRITTEN   : 2002.07.29                                          |
+   | DATA-WRITTEN   : 2018.07.25                                          |
    | AUTHER         : N.WATANUKI                                          |
-   | UPDATE-WRITTEN : 2011.05.11                                          |
-   | UPDATE-WRITTEN : 2018.03.15 Upgrade to a newer version.              |
+   | UPDATE-WRITTEN : 2019.03.12                                          |
    +======================================================================*/
     require_once("sschk.php");
     require_once("db_connect.php");
@@ -40,8 +39,8 @@ session_start();
         $ssid = $_SESSION["ssid"];
 
         $sql = "SELECT * FROM schdtb WHERE sid = $ssid";
-        $res = mysql_query($sql, $conn);
-        $nbrows = mysql_num_rows($res);  
+        $res = mysqli_query($conn, $sql);
+        $nbrows = mysqli_num_rows($res);  
         
         if($nbrows == 0) {
             print ("<HTML> \n");
@@ -67,7 +66,7 @@ session_start();
             exit;
         }
 
-        $row = mysql_fetch_assoc($res);
+        $row = mysqli_fetch_assoc($res);
         $pdate = substr($row["sdate"],0,4) ."/" .substr($row["sdate"],5,2) ."/" .substr($row["sdate"],8,2);
         if ($sesLoginID == $row["suserid"]) {
             $updflg = 1;  // 自分が書込んだ予定の場合
@@ -178,15 +177,15 @@ session_start();
         }
     }
 
-    $res = mysql_query($sql, $conn);
+    $res = mysqli_query($conn, $sql);
 
-    if(mysql_error($conn)) {
+    if(mysqli_error($conn)) {
         print("レコードの更新に失敗しました。\n");
         print("<BR>");
-        echo mysql_errno($conn) . ": " . mysql_error($conn) . "\n";
+        echo mysqli_errno($conn) . ": " . mysqli_error($conn) . "\n";
         session_destroy();
-        mysql_free_result($res);
-        mysql_close($conn);
+        mysqli_free_result($res);
+        mysqli_close($conn);
         exit;
     } else {
         
@@ -196,18 +195,18 @@ session_start();
        *  含まれている場合に、画面の遷移先を変える。*
        *============================================*/
         $query = "SELECT kid, kwd, kurl FROM kwordtb";
-        $result = mysql_query($query, $conn);
-        $nbrows = mysql_num_rows($result);  
+        $result = mysqli_query($conn, $query);
+        $nbrows = mysqli_num_rows($result);  
 
         // 結果チェック(Error Check)
         if(!$result) {
-            $message  = 'Invalid query: ' . mysql_error() . "\n";
+            $message  = 'Invalid query: ' . mysqli_error() . "\n";
             $message .= 'Whole query: ' . $query;
             die($message);
         }
 
         for ($i = 1; $i <= $nbrows; $i++) {
-            $row = mysql_fetch_assoc($result);
+            $row = mysqli_fetch_assoc($result);
             $keywd = $row['kwd'];
             $turl = $row['kurl'];
 
@@ -218,8 +217,8 @@ session_start();
             }
         }
     }
-    mysql_free_result($res);
-    mysql_close($conn);
+    mysqli_free_result($res);
+    mysqli_close($conn);
     
    /*----------------------------------------------------------*
       仮 修正：sRet[0] - sRet[1] に値がセットされていない。    *
