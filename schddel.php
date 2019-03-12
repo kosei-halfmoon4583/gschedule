@@ -1,15 +1,14 @@
 <?php
 session_start();
   /*======================================================================+
-   | PHP version 5.6.30                                                   |
+   | PHP version 7.1.16                                                   |
    +----------------------------------------------------------------------+
-   | Copyright (C) 2002.07.27 N.watanuki                                  |
+   | Copyright (C) 2018.07.25 _.________                                  |
    +----------------------------------------------------------------------+
    | Script-ID      : schddel.php                                         |
-   | DATA-WRITTEN   : 2002.07.27                                          |
-   | AUTHER         : N.WATANUKI                                          |
-   | UPDATE-WRITTEN : 2011.04.07                                          |
-   | UPDATE-WRITTEN : 2018.03.08 Upgrade to a newer version.              |
+   | DATA-WRITTEN   : 2018.07.25                                          |
+   | AUTHER         : _.________                                          |
+   | UPDATE-WRITTEN : 2019.03.12                                          |
    +======================================================================*/
     require_once("sschk.php");  
     require_once("db_connect.php");
@@ -29,8 +28,8 @@ session_start();
     $delflg = $sesadmin;
     $sql = "SELECT schdtb.*,accounttb.jpname FROM schdtb left join accounttb";
     $sql .= " on schdtb.suserid = accounttb.userid WHERE sid = $sid";
-    $res = mysql_query($sql, $conn);
-    $nrow = mysql_num_rows($res);  
+    $res = mysqli_query($conn, $sql);
+    $nrow = mysqli_num_rows($res);  
 
     //他のユーザーによりレコードが削除されていた場合
     if($nrow == 0) {
@@ -61,7 +60,7 @@ session_start();
         exit;
     }
     
-    $row = mysql_fetch_assoc($res);
+    $row = mysqli_fetch_assoc($res);
     
     //書き込んだユーザーか？
     if ($sesLoginID == $row["suserid"]) {
@@ -90,8 +89,8 @@ session_start();
     }
     $crename = $row["jpname"];
     
-    mysql_free_result($res);
-    mysql_close($conn);
+    mysqli_free_result($res);
+    mysqli_close($conn);
 ?>
 <HTML>
 <HEAD>
