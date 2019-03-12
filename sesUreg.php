@@ -1,15 +1,14 @@
 <?php
   /*======================================================================+
-   | PHP version 5.6.30                                                   |
+   | PHP version 7.1.16                                                   |
    +----------------------------------------------------------------------+
-   | Copyright(C). 2008.01.22 N.watanuki                                  |
+   | Copyright(C). 2018.07.25 _.________                                  |
    +----------------------------------------------------------------------+
    | Session Unregister Class                                             |
    | Script-ID      : sesUreg.php                                         |
-   | DATA-WRITTEN   : 2002.08.07                                          |
-   | AUTHER         : N.WATANUKI                                          |
-   | UPDATE-WRITTEN : 2008.01.22                                          |
-   | UPDATE-WRITTEN : 2018.03.15 Upgrade to a newer version.              |
+   | DATA-WRITTEN   : 2018.07.25                                          |
+   | AUTHER         : _.________                                          |
+   | UPDATE-WRITTEN : 2019.03.12                                          |
    +======================================================================*/
 if (isset($_SESSION["sschd"])) {
     unset($_SESSION["sschd"]);
