@@ -1,14 +1,14 @@
 <?php
 session_start();
   /*======================================================================+
-   | PHP version 5.6.30                                                   |
+   | PHP version 7.1.16                                                   |
    +----------------------------------------------------------------------+
-   | Copyright (C) 2002.07.30 N.watanuki                                  |
+   | Copyright (C) 2018.07.25 _.________                                  |
    +----------------------------------------------------------------------+
    | Script-ID      : todo.php                                            |
-   | DATA-WRITTEN   : 2002.07.30                                          |
-   | AUTHER         : N.WATANUKI                                          |
-   | UPDATE-WRITTEN : 2018.02.28 Upgrade to a newer version.              |
+   | DATA-WRITTEN   : 2018.07.25                                          |
+   | AUTHER         : _.________                                          |
+   | UPDATE-WRITTEN : 2019.03.12                                          |
    +======================================================================*/
     require_once("sschk.php"); 
     require_once("footer.php"); //footer(outer file.)
@@ -82,7 +82,7 @@ function todo_del(tid) { // TODOの削除
     //SQL
     $sql = "select todotb.*,accounttb.jpname from todotb left join accounttb";
     $sql .= " on todotb.tuserid = accounttb.userid order by tdate";
-    $res = mysql_query($sql, $conn);
+    $res = mysqli_query($conn, $sql);
     
     print("<FORM><INPUT type='button' value='ToDo追加' onclick='todo_add()'><BR><BR> \n");
         
@@ -94,7 +94,7 @@ function todo_del(tid) { // TODOの削除
            <TD class='c4'>&nbsp;登録者</TD>
            <TD class='c4'>&nbsp;操　作</TD></TR> \n");
 
-    while ($row = mysql_fetch_array($res)) {
+    while ($row = mysqli_fetch_array($res)) {
         $tid = $row["tid"];
         $tdate = $row["tdate"];
         $todo = $row["todo"];
@@ -113,8 +113,8 @@ function todo_del(tid) { // TODOの削除
     }
     print("</TABLE></FORM> \n");
 
-    mysql_free_result($res);
-    mysql_close($conn);
+    mysqli_free_result($res);
+    mysqli_close($conn);
 
     //[$year,$month,$day]がURLパラメータとして渡ってこない場合の処理
     if (!isset($year)) {
