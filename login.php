@@ -34,7 +34,7 @@ session_start();
             </a>
         </h3>
     </div>
-    <h4>Please Sign in !</h4><br>
+    <h4 style="color:#FFFFFF;">Please Sign in !</h4><br>
     <form action="loginsub.php" method="POST">
         <table>
             <tr>
@@ -46,6 +46,7 @@ session_start();
                 <td><input type="password" name="frmpasswd" placeholder="your Password" /></td>
             </tr>
             </table><br>
+            <p style="color:#FFFFFF;">.</p>
             <button type="submit" class="btn btn-sm btn-primary">Sign in</button>&nbsp;
             <button type="reset" class="btn btn-sm btn-primary">reset</button>
     </form>
